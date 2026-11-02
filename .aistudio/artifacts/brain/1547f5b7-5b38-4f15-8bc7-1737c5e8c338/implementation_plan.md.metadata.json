@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan for the Pathways Assistance Center (pathwaysac.org) responsive nonprofit landing page, featuring all original PAC programs and service areas, an interactive donation modal with monetary tiers and in-kind item pledges, a community events & workshops calendar with monthly grid and filterable list views plus RSVP modal, a single-page volunteer registration form with skills and availability, and a decoupled TypeScript service layer ready for Supabase and Resend.",
+  "updatedAt":  "2026-11-01T20:07:33.426585297Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

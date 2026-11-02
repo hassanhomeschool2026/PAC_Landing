@@ -1,0 +1,6 @@
+{
+  "name": "Pathways Assistance Center",
+  "description": "Pathways Assistance Center provides emergency financial bridge support, food assistance, and youth educational enrichment across Wylie, Murphy, Lavon, Rockwall, Rowlett, and Sachse.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

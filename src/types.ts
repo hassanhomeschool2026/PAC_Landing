@@ -22,7 +22,11 @@ export interface PartnerResource {
   bestFor: string;
 }
 
-export type EventCategory = 'Youth Empowerment' | 'Food Assistance' | 'Community Workshop' | 'Volunteer & Community';
+export type EventCategory =
+  | 'Youth Empowerment'
+  | 'Food Assistance'
+  | 'Community Workshop'
+  | 'Volunteer & Community';
 
 export interface CommunityEvent {
   id: string;
@@ -39,57 +43,9 @@ export interface CommunityEvent {
   featured?: boolean;
 }
 
-export interface EventRsvpPayload {
-  id: string;
-  eventId: string;
-  eventTitle: string;
-  eventDate: string;
-  name: string;
-  email: string;
-  phone: string;
-  attendeesCount: number;
-  notes?: string;
-  createdAt: string;
-}
-
-export interface VolunteerApplicationPayload {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  interests: string[];
-  availability: string;
-  message?: string;
-  createdAt: string;
-}
-
-export interface AssistanceInquiryPayload {
-  id: string;
-  name: string;
-  city: string;
-  phone: string;
-  email: string;
-  assistanceType: 'Rental / Mortgage' | 'Electric / Water / Gas Utilities' | 'Food Assistance' | 'Youth Programs' | 'Other Emergency Need';
-  message: string;
-  createdAt: string;
-}
-
-export interface DonationRecord {
-  id: string;
+export interface DonationTier {
   amount: number;
-  frequency: 'one-time' | 'monthly';
-  program: string;
-  donorName?: string;
-  donorEmail?: string;
-  type: 'stripe' | 'in-kind';
-  inKindCategories?: string[];
-  inKindDescription?: string;
-  createdAt: string;
-}
-
-export interface BackendIntegrationGuide {
-  supabaseSql: string;
-  resendTemplate: string;
-  netlifySnippet: string;
+  label: string;
+  impact: string;
+  popular?: boolean;
 }

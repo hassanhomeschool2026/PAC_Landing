@@ -1,39 +1,35 @@
 import React from 'react';
-import { Phone, Mail, Printer, MapPin, Heart, ShieldCheck, ArrowUp } from 'lucide-react';
-import { SERVICE_CITIES } from '../data/mockData';
+import { Phone, Mail, Printer, Heart, ShieldCheck, ArrowUp } from 'lucide-react';
+import { SERVICE_CITIES, LINKS } from '../data/mockData';
 
-interface FooterProps {
-  onOpenDonateModal: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer id="contact" className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800 scroll-mt-20">
+    <footer id="contact" className="bg-black text-slate-300 pt-16 pb-12 border-t border-slate-800 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Service Territory Strip */}
-        <div className="pb-12 mb-12 border-b border-slate-800/80">
+        <div className="pb-12 mb-12 border-b border-slate-800">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-rose-400 block mb-1">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#e79a9b] block mb-1">
                 Regional Service Territory
               </span>
               <p className="text-sm text-slate-300 font-medium">
-                Proudly serving families in <span className="text-white font-semibold">{SERVICE_CITIES.join(', ')}, Texas</span>.
+                Proudly serving families in <span className="text-white font-bold">{SERVICE_CITIES.join(', ')}, Texas</span>.
               </p>
             </div>
 
-            <button
-              onClick={onOpenDonateModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#E11D48] hover:bg-[#BE123C] transition-colors shrink-0 shadow-sm"
+            <a
+              href="#donate"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-black bg-[#e79a9b] hover:bg-[#d98586] transition-colors shrink-0 shadow-sm border border-[#d98586]/60"
             >
-              <Heart className="w-4 h-4 fill-white" />
+              <Heart className="w-4 h-4 fill-black" />
               <span>Donate Now</span>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -45,9 +41,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center p-2">
                 <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 34C10 24 18 16 34 14" stroke="#E11D48" strokeWidth="4" strokeLinecap="round" />
-                  <path d="M12 34C15 27 21 21 34 20" stroke="#DB2777" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 3" />
-                  <circle cx="28" cy="11" r="5" fill="#E11D48" />
+                  <path d="M6 34C10 24 18 16 34 14" stroke="#e79a9b" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M12 34C15 27 21 21 34 20" stroke="#f3c2c3" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 3" />
+                  <circle cx="28" cy="11" r="5" fill="#e79a9b" />
                   <path d="M28 8.5C27 7 25 7 24 8.5C23 10 25 12 28 14C31 12 33 10 32 8.5Z" fill="#FFFFFF" />
                 </svg>
               </div>
@@ -55,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
                 <span className="text-lg font-bold text-white block">
                   Pathways Assistance Center
                 </span>
-                <span className="text-xs text-rose-400 font-medium">
+                <span className="text-xs text-[#e79a9b] font-semibold">
                   501(c)(3) Public Charity · Founded 2020
                 </span>
               </div>
@@ -66,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
             </p>
 
             <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-[#e79a9b]" />
               <span>100% Tax-Deductible Contributions under IRS Section 501(c)(3)</span>
             </div>
           </div>
@@ -78,22 +74,22 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about" className="hover:text-rose-400 transition-colors">Our Mission</a>
+                <a href="#about" className="hover:text-[#e79a9b] transition-colors">Our Mission</a>
               </li>
               <li>
-                <a href="#programs" className="hover:text-rose-400 transition-colors">Core Pillars</a>
+                <a href="#programs" className="hover:text-[#e79a9b] transition-colors">Core Pillars</a>
               </li>
               <li>
-                <a href="#resources" className="hover:text-rose-400 transition-colors">Community Resources</a>
+                <a href="#resources" className="hover:text-[#e79a9b] transition-colors">Community Resources</a>
               </li>
               <li>
-                <a href="#events" className="hover:text-rose-400 transition-colors">Events & Workshops</a>
+                <a href="#events" className="hover:text-[#e79a9b] transition-colors">Events & Workshops</a>
               </li>
               <li>
-                <a href="#volunteer" className="hover:text-rose-400 transition-colors">Volunteer Sign-Up</a>
+                <a href="#volunteer" className="hover:text-[#e79a9b] transition-colors">Volunteer Sign-Up</a>
               </li>
               <li>
-                <a href="#donate" className="hover:text-rose-400 transition-colors">Monetary Giving</a>
+                <a href="#donate" className="hover:text-[#e79a9b] transition-colors">Monetary Giving</a>
               </li>
             </ul>
           </div>
@@ -105,8 +101,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
             </h4>
             <div className="text-sm text-slate-400 space-y-1">
               <p className="text-white font-semibold">Pathways Assistance Center</p>
-              <p>5900 Balcones Drive, Suite 165</p>
-              <p>Austin, Texas 78731</p>
+              <p>{LINKS.ADDRESS_LINE1}</p>
+              <p>{LINKS.ADDRESS_LINE2}</p>
             </div>
             <div className="pt-2 text-xs text-slate-500">
               Mailing operations and administrative registry.
@@ -120,40 +116,40 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDonateModal }) => {
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-300">
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-rose-500 shrink-0" />
-                <a href="tel:9725819322" className="hover:text-white transition-colors">
-                  Phone: (972) 581-9322
+                <Phone className="w-4 h-4 text-[#e79a9b] shrink-0" />
+                <a href={`tel:${LINKS.PHONE_NUMERIC}`} className="hover:text-white transition-colors">
+                  Phone: {LINKS.PHONE_PRIMARY}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Printer className="w-4 h-4 text-rose-500 shrink-0" />
-                <span>Fax: (972) 551-4442</span>
+                <Printer className="w-4 h-4 text-[#e79a9b] shrink-0" />
+                <span>Fax: {LINKS.FAX}</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-rose-500 shrink-0" />
-                <a href="mailto:info@pathwaysac.org" className="hover:text-white transition-colors">
-                  Email: info@pathwaysac.org
+                <Mail className="w-4 h-4 text-[#e79a9b] shrink-0" />
+                <a href={`mailto:${LINKS.EMAIL_INFO}`} className="hover:text-white transition-colors">
+                  Email: {LINKS.EMAIL_INFO}
                 </a>
               </li>
             </ul>
 
             <div className="pt-2">
               <span className="text-xs text-slate-500 block">General Inquiries & Intake:</span>
-              <span className="text-xs text-slate-400">info@pathwaysac.org</span>
+              <span className="text-xs text-slate-400">{LINKS.EMAIL_INFO}</span>
             </div>
           </div>
 
         </div>
 
         {/* Legal Attribution & Scroll Top */}
-        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p className="text-center sm:text-left">
             © 2026 Pathways Assistance Center. All Rights Reserved. Pathways Assistance Center is a registered 501(c)(3) tax-exempt public charity.
           </p>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors p-1"
+            className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors p-1 cursor-pointer"
             aria-label="Back to top of page"
           >
             <span>Back to top</span>

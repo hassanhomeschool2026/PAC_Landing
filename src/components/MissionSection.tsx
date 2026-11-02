@@ -31,23 +31,23 @@ export const MissionSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-50 text-rose-700 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#fdf5f5] text-black border border-[#f3c2c3] text-xs font-bold tracking-wider uppercase mb-3">
             Our Mission & Core Beliefs
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight leading-tight">
             Dignity, Respect, and Long-Term Stability
           </h2>
-          <div className="w-16 h-1 bg-[#E11D48] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-[#e79a9b] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Highlighted Quote Narrative Box */}
-        <div className="relative max-w-4xl mx-auto rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 sm:p-12 shadow-xl mb-16 overflow-hidden">
-          {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto rounded-3xl bg-black text-white p-8 sm:p-12 shadow-2xl mb-16 overflow-hidden border border-slate-800">
+          {/* Subtle brand ambient glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#e79a9b]/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
-            <div className="w-12 h-12 rounded-xl bg-rose-600/30 border border-rose-500/40 flex items-center justify-center shrink-0">
-              <Quote className="w-6 h-6 text-rose-400" />
+            <div className="w-12 h-12 rounded-xl bg-slate-900 border border-[#e79a9b]/40 flex items-center justify-center shrink-0">
+              <Quote className="w-6 h-6 text-[#e79a9b]" />
             </div>
             
             <div>
@@ -55,10 +55,10 @@ export const MissionSection: React.FC = () => {
                 “We know what it’s like to need a helping hand at least once in our lives. The core of our work is stabilizing families and educating starting at the youth level. Generational poverty is broken when we offer support to children and ensure their homes remain secure. We believe that needing help should never come at the cost of human dignity—everyone deserves to be treated with honor, confidentiality, and respect. Through emergency stabilization and youth programs, we are committed to paving paths that strengthen families and our communities.”
               </blockquote>
               
-              <div className="pt-4 border-t border-slate-700/80 flex items-center justify-between flex-wrap gap-4">
+              <div className="pt-4 border-t border-slate-800 flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <div className="text-sm font-bold text-white tracking-wide">Pathways Assistance Center</div>
-                  <div className="text-xs text-rose-300">Guiding Principle & Texas 501(c)(3) Charter</div>
+                  <div className="text-xs text-[#e79a9b] font-medium">Guiding Principle & Texas 501(c)(3) Charter</div>
                 </div>
                 <div className="text-xs text-slate-400 font-mono">
                   Established 2020 · Texas Nonprofit
@@ -75,12 +75,12 @@ export const MissionSection: React.FC = () => {
             return (
               <div
                 key={belief.title}
-                className="p-6 rounded-xl bg-[#F9FAFB] border border-slate-200 hover:border-rose-300 hover:bg-white hover:shadow-md transition-all group"
+                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-black hover:shadow-lg transition-all group"
               >
-                <div className="w-12 h-12 rounded-lg bg-white border border-slate-200 text-rose-600 flex items-center justify-center mb-4 group-hover:bg-[#E11D48] group-hover:text-white transition-colors shadow-xs">
-                  <Icon className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl bg-black text-white flex items-center justify-center mb-4 group-hover:bg-[#e79a9b] group-hover:text-black transition-colors shadow-xs">
+                  <Icon className="w-6 h-6 text-[#e79a9b] group-hover:text-black transition-colors" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-bold text-black mb-2">
                   {belief.title}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">

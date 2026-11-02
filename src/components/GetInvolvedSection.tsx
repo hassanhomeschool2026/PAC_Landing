@@ -1,131 +1,43 @@
 import React, { useState } from 'react';
-import { DONATION_TIERS, SERVICE_CITIES, IN_KIND_CATEGORIES } from '../data/mockData';
-import { apiService } from '../services/apiService';
+import { DONATION_TIERS, LINKS, SERVICE_CITIES } from '../data/mockData';
 import { 
   Heart, 
   Users, 
   ShieldCheck, 
-  Check, 
   ExternalLink, 
-  Send, 
-  CheckCircle2, 
-  AlertCircle, 
-  Gift, 
   CreditCard,
-  Settings,
   Sparkles,
-  Package
+  Package,
+  Settings,
+  Check,
+  FileText
 } from 'lucide-react';
 
-interface GetInvolvedSectionProps {
-  onOpenDonateModal: () => void;
-}
-
-export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDonateModal }) => {
+export const GetInvolvedSection: React.FC = () => {
   // Donation State
   const [selectedTier, setSelectedTier] = useState<number>(100);
   const [customAmount, setCustomAmount] = useState<string>('');
   const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('monthly');
   const [programAllocation, setProgramAllocation] = useState<string>('Where Most Needed');
-  const [showStripeConfig, setShowStripeConfig] = useState<boolean>(false);
-  const [stripeUrlInput, setStripeUrlInput] = useState<string>(apiService.getStripeUrl());
-  const [stripeConfigSaved, setStripeConfigSaved] = useState<boolean>(false);
-
-  // Volunteer State
-  const [volunteerForm, setVolunteerForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    city: '',
-    interests: ['Youth Mentoring (Ages 8–17)'],
-    availability: 'Tuesday & Wednesday Mornings (9am - 1pm)',
-    message: ''
+  
+  // Configurable Stripe & Google Form links (persists in state/browser for quick user testing)
+  const [stripeLink, setStripeLink] = useState<string>(() => {
+    return localStorage.getItem('pac_custom_stripe') || LINKS.STRIPE_DONATION_URL;
   });
-
-  const [volSubmitting, setVolSubmitting] = useState(false);
-  const [volSubmitted, setVolSubmitted] = useState(false);
-  const [volError, setVolError] = useState<string | null>(null);
+  const [googleFormUrl, setGoogleFormUrl] = useState<string>(() => {
+    return localStorage.getItem('pac_custom_volunteer_form') || LINKS.GOOGLE_FORM_VOLUNTEER_DIRECT;
+  });
+  const [showConfig, setShowConfig] = useState<boolean>(false);
+  const [savedNotice, setSavedNotice] = useState<boolean>(false);
 
   const activeAmount = customAmount ? parseFloat(customAmount) || 0 : selectedTier;
 
-  const handleInterestToggle = (interest: string) => {
-    if (volunteerForm.interests.includes(interest)) {
-      setVolunteerForm({
-        ...volunteerForm,
-        interests: volunteerForm.interests.filter(i => i !== interest)
-      });
-    } else {
-      setVolunteerForm({
-        ...volunteerForm,
-        interests: [...volunteerForm.interests, interest]
-      });
-    }
-  };
-
-  const handleStripeLaunch = () => {
-    const url = apiService.getStripeUrl();
-    apiService.recordDonation({
-      amount: activeAmount,
-      frequency,
-      program: programAllocation,
-      type: 'stripe'
-    });
-
-    // If it's a test or placeholder URL, open our detailed interactive donation checkout modal
-    if (!url || url.includes('test_pathways')) {
-      onOpenDonateModal();
-    } else {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-  };
-
-  const handleSaveStripeUrl = (e: React.FormEvent) => {
+  const handleSaveLinks = (e: React.FormEvent) => {
     e.preventDefault();
-    apiService.setStripeUrl(stripeUrlInput);
-    setStripeConfigSaved(true);
-    setTimeout(() => setStripeConfigSaved(false), 3000);
-  };
-
-  const handleVolunteerSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!volunteerForm.name.trim() || !volunteerForm.email.trim() || !volunteerForm.phone.trim()) {
-      setVolError('Please complete your name, email, and phone number.');
-      return;
-    }
-    if (volunteerForm.interests.length === 0) {
-      setVolError('Please select at least one volunteer interest area.');
-      return;
-    }
-
-    setVolSubmitting(true);
-    setVolError(null);
-
-    try {
-      await apiService.submitVolunteerApplication({
-        name: volunteerForm.name,
-        email: volunteerForm.email,
-        phone: volunteerForm.phone,
-        city: volunteerForm.city || 'East Collin / Dallas Area',
-        interests: volunteerForm.interests,
-        availability: volunteerForm.availability,
-        message: volunteerForm.message
-      });
-
-      setVolSubmitted(true);
-      setVolunteerForm({
-        name: '',
-        email: '',
-        phone: '',
-        city: '',
-        interests: ['Youth Mentoring (Ages 8–17)'],
-        availability: 'Tuesday & Wednesday Mornings (9am - 1pm)',
-        message: ''
-      });
-    } catch {
-      setVolError('There was an issue saving your application. Please try again.');
-    } finally {
-      setVolSubmitting(false);
-    }
+    localStorage.setItem('pac_custom_stripe', stripeLink);
+    localStorage.setItem('pac_custom_volunteer_form', googleFormUrl);
+    setSavedNotice(true);
+    setTimeout(() => setSavedNotice(false), 3000);
   };
 
   return (
@@ -134,80 +46,83 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-50 text-rose-700 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#fdf5f5] text-black border border-[#f3c2c3] text-xs font-bold tracking-wider uppercase mb-3">
             Get Involved
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight leading-tight">
             Support Local Families & Strengthen Our Community
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            Whether through a tax-deductible financial contribution or volunteering your time to mentor youth and distribute food, your generosity creates real stability.
+            Whether through a tax-deductible financial gift or joining our volunteer team to mentor youth and distribute food, your generosity creates real stability.
           </p>
-          <div className="w-16 h-1 bg-[#E11D48] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-[#e79a9b] mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* 2-Column Split: Sub-Section A (Donate) & Sub-Section B (Volunteer) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        {/* 2-Column Split: Sub-Section A (Donate via Stripe) & Sub-Section B (Volunteer Google Form) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Sub-Section A: Monetary Giving (Stripe) (#donate) */}
-          <div id="donate" className="lg:col-span-6 flex flex-col justify-between rounded-3xl bg-[#F9FAFB] border-2 border-slate-900 p-7 sm:p-10 shadow-lg scroll-mt-28">
+          <div id="donate" className="lg:col-span-5 rounded-3xl bg-white border-2 border-black p-7 sm:p-9 shadow-xl scroll-mt-28 flex flex-col justify-between">
             
             <div>
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0">
-                    <Heart className="w-6 h-6 text-rose-500 fill-rose-500" />
+                  <div className="w-11 h-11 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                    <Heart className="w-6 h-6 text-[#e79a9b] fill-[#e79a9b]" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                    <h3 className="text-xl sm:text-2xl font-bold text-black">
                       Support Local Families
                     </h3>
-                    <span className="text-xs font-medium text-slate-500">
+                    <span className="text-xs font-semibold text-slate-500">
                       IRS 501(c)(3) Tax-Deductible Donation
                     </span>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => setShowStripeConfig(!showStripeConfig)}
-                  className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 rounded-lg transition-colors"
-                  title="Configure Stripe Payment Link"
+                  onClick={() => setShowConfig(!showConfig)}
+                  className="p-2 text-slate-400 hover:text-black rounded-lg transition-colors cursor-pointer"
+                  title="Configure Live Stripe Link"
+                  aria-label="Configure Stripe Link"
                 >
                   <Settings className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Developer / Admin Stripe Link Configuration Drawer */}
-              {showStripeConfig && (
-                <div className="mb-6 p-4 rounded-xl bg-white border border-slate-300 text-xs animate-in fade-in duration-200">
+              {/* Optional Config drawer for user to test their exact Stripe Payment Link */}
+              {showConfig && (
+                <div className="mb-6 p-4 rounded-xl bg-[#fdf5f5] border border-[#f3c2c3] text-xs animate-in fade-in duration-200">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-slate-900 flex items-center gap-1">
-                      <CreditCard className="w-4 h-4 text-rose-600" /> Stripe Payment Link Setup
+                    <span className="font-bold text-black flex items-center gap-1">
+                      <CreditCard className="w-4 h-4 text-[#e79a9b]" /> Live Stripe Link Setup
                     </span>
-                    {stripeConfigSaved && (
-                      <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                    {savedNotice && (
+                      <span className="text-emerald-700 font-bold flex items-center gap-1">
                         <Check className="w-3.5 h-3.5" /> Saved!
                       </span>
                     )}
                   </div>
-                  <p className="text-slate-600 mb-3 leading-relaxed">
-                    Paste your Stripe Payment Link (e.g., <code>https://buy.stripe.com/...</code>). All [Donate Securely via Stripe] buttons will route donors directly to your live Stripe checkout:
+                  <p className="text-slate-600 mb-2 leading-relaxed">
+                    Paste your live Stripe Payment Link (e.g. <code>https://buy.stripe.com/...</code>):
                   </p>
-                  <form onSubmit={handleSaveStripeUrl} className="flex gap-2">
+                  <form onSubmit={handleSaveLinks} className="space-y-2">
                     <input
                       type="url"
-                      value={stripeUrlInput}
-                      onChange={(e) => setStripeUrlInput(e.target.value)}
+                      value={stripeLink}
+                      onChange={(e) => setStripeLink(e.target.value)}
                       placeholder="https://buy.stripe.com/..."
-                      className="flex-1 px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-rose-500 font-mono"
+                      className="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-black font-mono bg-white"
                     />
-                    <button
-                      type="submit"
-                      className="px-3 py-1.5 rounded bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors"
-                    >
-                      Save Link
-                    </button>
+                    <div className="flex justify-end">
+                      <button
+                        type="submit"
+                        className="px-3 py-1.5 rounded-lg bg-black text-white font-bold hover:bg-slate-800 transition-colors"
+                      >
+                        Save Link
+                      </button>
+                    </div>
                   </form>
                 </div>
               )}
@@ -218,25 +133,25 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
               </p>
 
               {/* Frequency Selector: One-Time vs Monthly */}
-              <div className="grid grid-cols-2 p-1 bg-white rounded-xl border border-slate-200 mb-6">
+              <div className="grid grid-cols-2 p-1 bg-slate-100 rounded-xl border border-slate-200 mb-6">
                 <button
                   type="button"
                   onClick={() => setFrequency('monthly')}
                   className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
                     frequency === 'monthly'
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-black text-white shadow-xs'
+                      : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  Monthly Sustainer (Recommended)
+                  Monthly Sustainer
                 </button>
                 <button
                   type="button"
                   onClick={() => setFrequency('one-time')}
                   className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
                     frequency === 'one-time'
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-black text-white shadow-xs'
+                      : 'text-slate-600 hover:text-black'
                   }`}
                 >
                   One-Time Gift
@@ -244,7 +159,7 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
               </div>
 
               {/* Preset Amounts Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
                 {DONATION_TIERS.map((tier) => (
                   <button
                     key={tier.amount}
@@ -253,10 +168,10 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
                       setSelectedTier(tier.amount);
                       setCustomAmount('');
                     }}
-                    className={`py-3 px-2 rounded-xl border text-center transition-all cursor-pointer ${
+                    className={`py-3 px-2 rounded-xl border-2 text-center transition-all cursor-pointer ${
                       selectedTier === tier.amount && !customAmount
-                        ? 'border-[#E11D48] bg-rose-50/80 text-rose-700 font-extrabold ring-2 ring-rose-500/20'
-                        : 'border-slate-200 bg-white text-slate-800 font-bold hover:border-slate-300'
+                        ? 'border-black bg-[#fdf5f5] text-black font-extrabold ring-2 ring-[#e79a9b]/50'
+                        : 'border-slate-200 bg-white text-slate-800 font-bold hover:border-slate-400'
                     }`}
                   >
                     <span className="text-base sm:text-lg">{tier.label}</span>
@@ -277,15 +192,15 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
                     setCustomAmount(e.target.value);
                     setSelectedTier(0);
                   }}
-                  className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-black"
                 />
               </div>
 
               {/* Tangible Impact Description */}
-              <div className="p-4 rounded-xl bg-white border border-slate-200 mb-6 text-xs text-slate-600 leading-relaxed flex items-start gap-3">
-                <Sparkles className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 mb-6 text-xs text-slate-600 leading-relaxed flex items-start gap-3">
+                <Sparkles className="w-4 h-4 text-[#e79a9b] shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-800">Your Impact: </span>
+                  <span className="font-bold text-black">Your Impact: </span>
                   {activeAmount >= 250
                     ? 'Provides emergency housing micro-relief preventing family eviction and displacement.'
                     : activeAmount >= 100
@@ -304,7 +219,7 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
                 <select
                   value={programAllocation}
                   onChange={(e) => setProgramAllocation(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-black"
                 >
                   <option value="Where Most Needed">Where Most Needed (Greatest Community Impact)</option>
                   <option value="Emergency Housing & Utilities">Emergency Housing & Utilities Micro-Grants</option>
@@ -314,214 +229,139 @@ export const GetInvolvedSection: React.FC<GetInvolvedSectionProps> = ({ onOpenDo
               </div>
             </div>
 
-            {/* Bottom Actions */}
-            <div className="space-y-3 pt-4 border-t border-slate-200">
-              <button
-                onClick={handleStripeLaunch}
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl text-base font-extrabold text-white bg-[#E11D48] hover:bg-[#BE123C] active:scale-[0.98] transition-all shadow-lg shadow-rose-500/25 cursor-pointer"
+            {/* Bottom Actions linking directly to Stripe */}
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <a
+                href={stripeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl text-base font-extrabold text-black bg-[#e79a9b] hover:bg-[#d98586] active:scale-[0.98] transition-all shadow-md border border-[#d98586]/60 cursor-pointer text-center"
               >
-                <CreditCard className="w-5 h-5 fill-white" />
+                <CreditCard className="w-5 h-5 fill-black" />
                 <span>Donate Securely via Stripe (${activeAmount || 25}{frequency === 'monthly' ? '/mo' : ''})</span>
                 <ExternalLink className="w-4 h-4" />
-              </button>
+              </a>
 
               <div className="flex items-center justify-between text-xs text-slate-500 px-1">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> 256-Bit SSL Encrypted
+                <span className="flex items-center gap-1 font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-black" /> 256-Bit SSL Encrypted via Stripe
                 </span>
-                <button
-                  type="button"
-                  onClick={onOpenDonateModal}
-                  className="text-rose-600 hover:underline font-semibold"
-                >
-                  Pledge In-Kind Goods Instead →
-                </button>
+                <span className="text-black font-bold">
+                  IRS 501(c)(3) Recognized
+                </span>
+              </div>
+
+              {/* In-Kind Note */}
+              <div className="p-3.5 rounded-xl bg-[#fdf5f5] border border-[#f3c2c3] text-xs text-slate-700">
+                <div className="flex items-center gap-2 font-bold text-black mb-1">
+                  <Package className="w-4 h-4 text-[#e79a9b]" />
+                  <span>Prefer to Donate Physical Items?</span>
+                </div>
+                <p className="leading-relaxed">
+                  We accept new children’s clothing & shoes (ages 4–17), unopened personal care toiletries, and non-perishable pantry foods. Email us at <a href={`mailto:${LINKS.EMAIL_DONATE}`} className="font-bold underline text-black hover:text-[#b35759]">{LINKS.EMAIL_DONATE}</a> to coordinate drop-off.
+                </p>
               </div>
             </div>
 
           </div>
 
-          {/* Sub-Section B: Volunteer Sign-Up (#volunteer) */}
-          <div id="volunteer" className="lg:col-span-6 flex flex-col justify-between rounded-3xl bg-white border border-slate-200 p-7 sm:p-10 shadow-xs scroll-mt-28">
+          {/* Sub-Section B: Volunteer Sign-Up with Embedded Google Form (#volunteer) */}
+          <div id="volunteer" className="lg:col-span-7 rounded-3xl bg-white border-2 border-black p-7 sm:p-9 shadow-xl scroll-mt-28">
             
-            <div>
-              {/* Header */}
-              <div className="flex items-center gap-3 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 border border-rose-100">
-                  <Users className="w-6 h-6" />
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 mb-6 gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                  <Users className="w-6 h-6 text-[#e79a9b]" />
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  <h3 className="text-xl sm:text-2xl font-bold text-black">
                     Join Our Volunteer Team
                   </h3>
-                  <span className="text-xs font-medium text-slate-500">
+                  <span className="text-xs font-semibold text-slate-500">
                     East Collin & Dallas County Community Engagement
                   </span>
                 </div>
               </div>
 
-              {/* Copy */}
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-6">
-                We rely on dedicated neighbors to mentor youth and coordinate community impact. Help us distribute food, lead workshops, and strengthen local families.
-              </p>
+              {/* Direct Link to open Google Form in New Window */}
+              <a
+                href={googleFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-extrabold text-black bg-[#fdf5f5] hover:bg-[#fae7e8] border border-[#f3c2c3] transition-colors whitespace-nowrap shadow-xs"
+              >
+                <span>Open in New Tab</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
 
-              {volSubmitted ? (
-                <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-8 text-center animate-in fade-in duration-300 my-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h4 className="text-lg font-bold text-emerald-950 mb-2">
-                    Volunteer Application Received!
-                  </h4>
-                  <p className="text-sm text-emerald-800 leading-relaxed mb-6 max-w-sm mx-auto">
-                    Thank you for stepping up to serve your community. Our volunteer coordinator will reach out to schedule an orientation.
-                  </p>
-                  <button
-                    onClick={() => setVolSubmitted(false)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-emerald-900 bg-emerald-200 hover:bg-emerald-300 transition-colors"
-                  >
-                    <span>Register Another Volunteer</span>
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleVolunteerSubmit} className="space-y-4">
-                  {volError && (
-                    <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-50 text-rose-700 text-xs border border-rose-200">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
-                      <span>{volError}</span>
-                    </div>
-                  )}
+            {/* Copy */}
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-5">
+              We rely on dedicated neighbors to mentor youth and coordinate community impact. Complete our official volunteer application below to get connected with upcoming opportunities.
+            </p>
 
-                  {/* Interest Checklist (As per spec) */}
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                      Interest Areas <span className="text-rose-600">*</span>
-                    </label>
-                    <div className="space-y-2">
-                      {[
-                        'Youth Mentoring (Ages 8–17)',
-                        'Event Support & Distribution',
-                        'Community Outreach & Awareness'
-                      ].map((interest) => {
-                        const checked = volunteerForm.interests.includes(interest);
-                        return (
-                          <label
-                            key={interest}
-                            onClick={() => handleInterestToggle(interest)}
-                            className={`flex items-center gap-3 p-3 rounded-xl border text-xs sm:text-sm font-semibold cursor-pointer transition-all ${
-                              checked
-                                ? 'border-[#E11D48] bg-rose-50/60 text-slate-900'
-                                : 'border-slate-200 bg-[#F9FAFB] text-slate-600 hover:bg-slate-100'
-                            }`}
-                          >
-                            <div className={`w-5 h-5 rounded-md flex items-center justify-center border transition-colors ${
-                              checked ? 'bg-[#E11D48] border-[#E11D48] text-white' : 'border-slate-300 bg-white'
-                            }`}>
-                              {checked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
-                            </div>
-                            <span>{interest}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </div>
+            {/* Interest Areas Badges */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {[
+                'Youth Mentoring (Ages 8–17)',
+                'Event Support & Distribution',
+                'Community Outreach & Awareness'
+              ].map((interest) => (
+                <span
+                  key={interest}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#fdf5f5] text-black border border-[#f3c2c3]"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#e79a9b]" />
+                  <span>{interest}</span>
+                </span>
+              ))}
+            </div>
 
-                  {/* Name and Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Full Name <span className="text-rose-600">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={volunteerForm.name}
-                        onChange={(e) => setVolunteerForm({ ...volunteerForm, name: e.target.value })}
-                        placeholder="John Doe"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Email Address <span className="text-rose-600">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={volunteerForm.email}
-                        onChange={(e) => setVolunteerForm({ ...volunteerForm, email: e.target.value })}
-                        placeholder="john@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-                      />
-                    </div>
-                  </div>
+            {/* Embedded Google Form Container */}
+            <div className="relative rounded-2xl border-2 border-slate-200 overflow-hidden bg-slate-50 shadow-inner">
+              <div className="bg-slate-100 border-b border-slate-200 px-4 py-2 flex items-center justify-between text-xs text-slate-600">
+                <span className="flex items-center gap-1.5 font-bold text-black">
+                  <FileText className="w-3.5 h-3.5 text-[#e79a9b]" />
+                  <span>Official Google Form: Pathways Volunteer Sign-Up</span>
+                </span>
+                <a
+                  href={googleFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-black hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Trouble viewing? Open direct link</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
 
-                  {/* Phone and City */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Phone <span className="text-rose-600">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={volunteerForm.phone}
-                        onChange={(e) => setVolunteerForm({ ...volunteerForm, phone: e.target.value })}
-                        placeholder="(972) 000-0000"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        City / Community
-                      </label>
-                      <select
-                        value={volunteerForm.city}
-                        onChange={(e) => setVolunteerForm({ ...volunteerForm, city: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-                      >
-                        <option value="">Select your city...</option>
-                        {SERVICE_CITIES.map(c => (
-                          <option key={c} value={c}>{c}</option>
-                        ))}
-                        <option value="Other Area">Other Collin / Dallas County</option>
-                      </select>
-                    </div>
-                  </div>
+              {/* Responsive Google Form iframe */}
+              <iframe
+                src={googleFormUrl.includes('?') ? `${googleFormUrl}&embedded=true` : `${googleFormUrl}?embedded=true`}
+                width="100%"
+                height="620"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                className="w-full bg-white"
+                title="Pathways Assistance Center Volunteer Registration Form"
+              >
+                Loading Google Form…
+              </iframe>
+            </div>
 
-                  {/* Availability / Message */}
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Availability & Message
-                    </label>
-                    <textarea
-                      rows={2}
-                      value={volunteerForm.message}
-                      onChange={(e) => setVolunteerForm({ ...volunteerForm, message: e.target.value })}
-                      placeholder="e.g., Available Tuesday mornings for food packing or Saturday youth workshops."
-                      className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={volSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 border-2 border-slate-900 active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      {volSubmitting ? (
-                        <span>Submitting Application...</span>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4 text-rose-600" />
-                          <span>Submit Volunteer Application</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-
+            {/* Helper footer */}
+            <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+              <span>All volunteer applications are submitted directly into Pathways Assistance Center's Google Workspace.</span>
+              <a
+                href={googleFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-black underline decoration-[#e79a9b] decoration-2 hover:text-[#b35759] shrink-0"
+              >
+                Open Fullscreen Form →
+              </a>
             </div>
 
           </div>

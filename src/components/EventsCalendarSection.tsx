@@ -1,26 +1,22 @@
 import React, { useState, useMemo } from 'react';
 import { CommunityEvent, EventCategory } from '../types';
-import { apiService } from '../services/apiService';
+import { COMMUNITY_EVENTS, downloadEventIcs, LINKS } from '../data/mockData';
 import { 
   Calendar as CalendarIcon, 
   List, 
   Grid, 
   MapPin, 
   Clock, 
-  Users, 
   ChevronLeft, 
   ChevronRight, 
   Search, 
   Download, 
   Sparkles,
-  ArrowRight
+  ExternalLink,
+  Users
 } from 'lucide-react';
 
-interface EventsCalendarSectionProps {
-  onOpenRsvpModal: (event: CommunityEvent) => void;
-}
-
-export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ onOpenRsvpModal }) => {
+export const EventsCalendarSection: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -29,7 +25,7 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
   const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 10, 1)); // Nov 2026
   const [selectedDayString, setSelectedDayString] = useState<string>('2026-11-07');
 
-  const events = apiService.getEvents();
+  const events = COMMUNITY_EVENTS;
 
   const categories: string[] = [
     'All',
@@ -70,7 +66,6 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
     setCurrentDate(new Date(year, month + 1, 1));
   };
 
-  // Events on the currently selected day in grid view
   const eventsOnSelectedDay = useMemo(() => {
     if (!selectedDayString) return [];
     return events.filter(e => e.date === selectedDayString);
@@ -79,38 +74,38 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
   const getCategoryColor = (category: EventCategory) => {
     switch (category) {
       case 'Youth Empowerment':
-        return 'text-rose-700 bg-rose-50 border-rose-200';
+        return 'text-black bg-[#fdf5f5] border-[#f3c2c3]';
       case 'Food Assistance':
-        return 'text-emerald-800 bg-emerald-50 border-emerald-200';
+        return 'text-black bg-slate-100 border-slate-300';
       case 'Community Workshop':
-        return 'text-amber-800 bg-amber-50 border-amber-200';
+        return 'text-black bg-[#fef7f7] border-[#e79a9b]/50';
       case 'Volunteer & Community':
-        return 'text-blue-800 bg-blue-50 border-blue-200';
+        return 'text-black bg-slate-50 border-slate-200';
       default:
-        return 'text-slate-800 bg-slate-100 border-slate-200';
+        return 'text-black bg-slate-100 border-slate-200';
     }
   };
 
   return (
-    <section id="events" className="py-20 bg-[#F9FAFB] border-b border-slate-200 scroll-mt-20">
+    <section id="events" className="py-20 bg-slate-50/50 border-b border-slate-200 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-50 text-rose-700 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#fdf5f5] text-black border border-[#f3c2c3] text-xs font-bold tracking-wider uppercase mb-3">
             Community Calendar
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight leading-tight">
             Upcoming Community Events & Workshops
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
             Join us for youth financial literacy labs, weekly food distributions, and family stabilization workshops across Collin and Dallas counties.
           </p>
-          <div className="w-16 h-1 bg-[#E11D48] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-[#e79a9b] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Calendar Control Toolbar */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs mb-8">
+        <div className="bg-white rounded-2xl border-2 border-slate-200 p-4 sm:p-6 shadow-xs mb-8">
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
             
             {/* Category Filter Pills (Interactive Buttons) */}
@@ -121,8 +116,8 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                     selectedCategory === cat
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                      ? 'bg-black text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-700 hover:bg-[#fdf5f5] hover:text-black'
                   }`}
                 >
                   {cat}
@@ -139,7 +134,7 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                   placeholder="Search workshops, food distribution..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-1.5 rounded-lg border border-slate-200 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full pl-9 pr-3 py-1.5 rounded-lg border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#e79a9b]"
                 />
               </div>
 
@@ -147,10 +142,10 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
               <div className="flex items-center p-1 bg-slate-100 rounded-lg border border-slate-200 shrink-0">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-1.5 rounded-md text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer ${
+                  className={`p-1.5 rounded-md text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer ${
                     viewMode === 'grid'
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-500 hover:text-slate-900'
+                      ? 'bg-white text-black shadow-xs'
+                      : 'text-slate-500 hover:text-black'
                   }`}
                   aria-label="Monthly Grid View"
                 >
@@ -159,10 +154,10 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-1.5 rounded-md text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer ${
+                  className={`p-1.5 rounded-md text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer ${
                     viewMode === 'list'
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-500 hover:text-slate-900'
+                      ? 'bg-white text-black shadow-xs'
+                      : 'text-slate-500 hover:text-black'
                   }`}
                   aria-label="List View"
                 >
@@ -181,27 +176,27 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left 7 Columns: Month Calendar Grid */}
-            <div className="lg:col-span-8 rounded-2xl bg-white border border-slate-200 p-5 sm:p-7 shadow-xs">
+            <div className="lg:col-span-8 rounded-2xl bg-white border-2 border-slate-200 p-5 sm:p-7 shadow-xs">
               
               {/* Month Header & Controls */}
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2">
-                  <CalendarIcon className="w-5 h-5 text-rose-600" />
-                  <h3 className="text-lg font-bold text-slate-900">
+                  <CalendarIcon className="w-5 h-5 text-black" />
+                  <h3 className="text-lg font-bold text-black">
                     {monthNames[month]} {year}
                   </h3>
                 </div>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={prevMonth}
-                    className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
+                    className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-black transition-colors"
                     aria-label="Previous Month"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextMonth}
-                    className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
+                    className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-black transition-colors"
                     aria-label="Next Month"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -222,12 +217,10 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
 
               {/* Calendar Grid Days */}
               <div className="grid grid-cols-7 gap-1 sm:gap-2">
-                {/* Empty slots before first day */}
                 {Array.from({ length: firstDayIndex }).map((_, i) => (
                   <div key={`empty-${i}`} className="h-16 sm:h-20 rounded-lg bg-slate-50/50 border border-transparent" />
                 ))}
 
-                {/* Days of current month */}
                 {Array.from({ length: daysInMonth }).map((_, i) => {
                   const dayNum = i + 1;
                   const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
@@ -241,28 +234,28 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                       onClick={() => setSelectedDayString(dayString)}
                       className={`h-16 sm:h-20 p-1.5 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
                         isSelected
-                          ? 'border-[#E11D48] bg-rose-50/60 ring-2 ring-rose-500/20'
+                          ? 'border-black bg-[#fdf5f5] ring-2 ring-[#e79a9b]'
                           : hasEvents
-                          ? 'border-slate-300 bg-white hover:border-rose-400 hover:bg-rose-50/30'
+                          ? 'border-slate-300 bg-white hover:border-black hover:bg-[#fdf5f5]/40'
                           : 'border-slate-100 bg-white hover:bg-slate-50 text-slate-400'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className={`text-xs font-bold font-mono ${isSelected ? 'text-[#E11D48]' : hasEvents ? 'text-slate-900' : 'text-slate-400'}`}>
+                        <span className={`text-xs font-bold font-mono ${isSelected ? 'text-black' : hasEvents ? 'text-black' : 'text-slate-400'}`}>
                           {dayNum}
                         </span>
                         {hasEvents && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+                          <span className="w-2 h-2 rounded-full bg-[#e79a9b]" />
                         )}
                       </div>
 
                       {hasEvents && (
                         <div className="w-full">
-                          <div className="truncate text-[10px] font-semibold text-slate-800 bg-slate-100/90 rounded px-1 py-0.5 border border-slate-200/80">
+                          <div className="truncate text-[10px] font-bold text-black bg-slate-100 rounded px-1 py-0.5 border border-slate-200">
                             {dayEvents[0].title}
                           </div>
                           {dayEvents.length > 1 && (
-                            <div className="text-[9px] text-rose-600 font-bold mt-0.5">
+                            <div className="text-[9px] text-[#b35759] font-bold mt-0.5">
                               +{dayEvents.length - 1} more
                             </div>
                           )}
@@ -275,7 +268,7 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
 
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#E11D48]" /> Selected dates with registered events
+                  <span className="w-2 h-2 rounded-full bg-[#e79a9b]" /> Highlighted dates with community events
                 </span>
                 <span>Click any day to view scheduled workshops</span>
               </div>
@@ -283,15 +276,15 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
             </div>
 
             {/* Right 4 Columns: Selected Day Schedule Detail Card */}
-            <div className="lg:col-span-4 rounded-2xl bg-white border border-slate-200 p-6 shadow-xs sticky top-28">
+            <div className="lg:col-span-4 rounded-2xl bg-white border-2 border-slate-200 p-6 shadow-xs sticky top-28">
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
                 <div>
                   <span className="text-xs font-mono font-bold text-slate-400 uppercase">Selected Date</span>
-                  <h4 className="text-base font-bold text-slate-900">
+                  <h4 className="text-base font-bold text-black">
                     {selectedDayString ? new Date(selectedDayString + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' }) : 'Select a date'}
                   </h4>
                 </div>
-                <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                <span className="text-xs font-bold px-2 py-0.5 rounded bg-black text-white">
                   {eventsOnSelectedDay.length} {eventsOnSelectedDay.length === 1 ? 'Event' : 'Events'}
                 </span>
               </div>
@@ -299,9 +292,9 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
               {eventsOnSelectedDay.length > 0 ? (
                 <div className="space-y-4">
                   {eventsOnSelectedDay.map(evt => (
-                    <div key={evt.id} className="p-4 rounded-xl bg-[#F9FAFB] border border-slate-200 space-y-3">
+                    <div key={evt.id} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded border ${getCategoryColor(evt.category)}`}>
+                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded border ${getCategoryColor(evt.category)}`}>
                           {evt.category}
                         </span>
                         <span className="text-xs text-slate-500 font-mono">
@@ -309,7 +302,7 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                         </span>
                       </div>
 
-                      <h5 className="text-sm font-bold text-slate-900 leading-snug">
+                      <h5 className="text-sm font-bold text-black leading-snug">
                         {evt.title}
                       </h5>
 
@@ -329,16 +322,19 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                       </p>
 
                       <div className="pt-2 flex items-center gap-2">
-                        <button
-                          onClick={() => onOpenRsvpModal(evt)}
-                          className="flex-1 py-2 px-3 rounded-lg text-xs font-bold text-white bg-[#E11D48] hover:bg-[#BE123C] transition-colors text-center cursor-pointer"
+                        <a
+                          href={LINKS.GOOGLE_FORM_INQUIRY_DIRECT}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-2 px-3 rounded-lg text-xs font-bold text-black bg-[#e79a9b] hover:bg-[#d98586] transition-colors text-center cursor-pointer border border-[#d98586]/60 inline-flex items-center justify-center gap-1"
                         >
-                          RSVP / Register
-                        </button>
+                          <span>RSVP / Register</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
                         <button
-                          onClick={() => apiService.generateIcsFile(evt)}
+                          onClick={() => downloadEventIcs(evt)}
                           title="Download Calendar (.ics) file"
-                          className="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors"
+                          className="p-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-black transition-colors"
                         >
                           <Download className="w-3.5 h-3.5" />
                         </button>
@@ -366,14 +362,14 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
               filteredEvents.map((evt) => (
                 <div
                   key={evt.id}
-                  className="rounded-2xl bg-white border border-slate-200 p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 hover:border-slate-300 hover:shadow-md transition-all shadow-xs"
+                  className="rounded-2xl bg-white border-2 border-slate-200 p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 hover:border-black hover:shadow-md transition-all shadow-xs"
                 >
                   {/* Left Column: Date Callout Block & Details */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
                     
                     {/* Date Block */}
-                    <div className="w-20 h-20 rounded-xl bg-slate-900 text-white flex flex-col items-center justify-center shrink-0 border border-slate-800">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-rose-400">
+                    <div className="w-20 h-20 rounded-xl bg-black text-white flex flex-col items-center justify-center shrink-0 border border-slate-800">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#e79a9b]">
                         {new Date(evt.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                       </span>
                       <span className="text-2xl font-extrabold font-mono leading-none my-0.5">
@@ -387,20 +383,20 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                     {/* Event Meta */}
                     <div className="space-y-1.5 max-w-2xl">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded border ${getCategoryColor(evt.category)}`}>
+                        <span className={`text-xs font-bold px-2.5 py-0.5 rounded border ${getCategoryColor(evt.category)}`}>
                           {evt.category}
                         </span>
                         {evt.featured && (
-                          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
-                            <Sparkles className="w-3 h-3" /> Featured Program
+                          <span className="text-xs font-bold px-2 py-0.5 rounded bg-[#fdf5f5] text-black border border-[#f3c2c3] flex items-center gap-1">
+                            <Sparkles className="w-3 h-3 text-[#e79a9b]" /> Featured Program
                           </span>
                         )}
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-500 font-medium">
                           Audience: {evt.audience}
                         </span>
                       </div>
 
-                      <h4 className="text-lg font-bold text-slate-900 leading-snug">
+                      <h4 className="text-lg font-bold text-black leading-snug">
                         {evt.title}
                       </h4>
 
@@ -424,26 +420,28 @@ export const EventsCalendarSection: React.FC<EventsCalendarSectionProps> = ({ on
                   <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center w-full lg:w-auto pt-4 sm:pt-0 border-t sm:border-t-0 border-slate-100 gap-3 shrink-0">
                     <div className="text-left sm:text-right">
                       <span className="text-xs text-slate-500 block">Registration</span>
-                      <span className="text-sm font-bold text-slate-900 tabular-nums">
+                      <span className="text-sm font-bold text-black tabular-nums">
                         {evt.capacity - evt.registeredCount} spots available
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => apiService.generateIcsFile(evt)}
+                        onClick={() => downloadEventIcs(evt)}
                         title="Download Calendar (.ics) invite"
-                        className="p-2.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors"
+                        className="p-2.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-black transition-colors"
                       >
                         <Download className="w-4 h-4" />
                       </button>
-                      <button
-                        onClick={() => onOpenRsvpModal(evt)}
-                        className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-white bg-[#E11D48] hover:bg-[#BE123C] active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap shadow-xs"
+                      <a
+                        href={LINKS.GOOGLE_FORM_INQUIRY_DIRECT}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold text-black bg-[#e79a9b] hover:bg-[#d98586] transition-all cursor-pointer whitespace-nowrap shadow-xs border border-[#d98586]/60"
                       >
                         <span>RSVP / Register</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
                     </div>
                   </div>
 

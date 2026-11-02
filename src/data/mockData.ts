@@ -9,103 +9,122 @@ export const SERVICE_CITIES = [
   'Sachse'
 ];
 
-export const SERVICE_PILLARS: ServicePillar[] = [
+export const LINKS = {
+  // Exact Stripe donation link specified by user
+  STRIPE_DONATION_URL: 'https://donate.stripe.com/fZudRb5J4dDsew934AgnK00',
+  
+  // Google Forms for volunteer registration & inquiries
+  GOOGLE_FORM_VOLUNTEER: 'https://docs.google.com/forms/d/e/1FAIpQLSc_EXAMPLE_VOLUNTEER_FORM_KEY/viewform',
+  GOOGLE_FORM_INQUIRY: 'https://docs.google.com/forms/d/e/1FAIpQLSc_EXAMPLE_INQUIRY_FORM_KEY/viewform',
+
+  // Contact details exactly as specified
+  ADDRESS_LINE1: '5900 Balcones Drive, Suite 165',
+  ADDRESS_CITY_STATE_ZIP: 'Austin, Texas 78731',
+  EMAIL_INFO: 'info@pathwaysac.org',
+  EMAIL_DONATE: 'donate@pathwaysac.org',
+  PHONE_DISPLAY: '972.581.9322',
+  PHONE_NUMERIC: '9725819322',
+  FAX_DISPLAY: '972.551.4442'
+};
+
+// Exactly the 3 active pillars specified (no discontinued clothing, no pause disclaimers)
+export const WAYS_WE_HELP: ServicePillar[] = [
   {
-    id: 'financial-assistance',
-    pillarNumber: '01',
-    title: 'Emergency Financial Assistance',
-    shortTitle: 'Financial Relief',
+    id: 'short-term-financial-assistance',
+    pillarNumber: '1',
+    title: 'Short Term Financial Assistance',
+    shortTitle: 'Financial Assistance',
     focus: 'Direct-to-vendor micro-relief for essential housing (rent/mortgage) and utility services (electricity, water, gas) to prevent disconnections and evictions for households with children.',
-    details: 'When sudden job disruptions, illness, or emergency expenses strike, our micro-relief grants intervene before families face eviction or utility shut-offs. Payments are made directly to verified housing providers and utility companies to ensure absolute accountability and immediate relief.',
+    details: 'When sudden disruptions or emergency expenses occur, our micro-relief grants intervene before families face eviction or utility shut-offs. Payments are made directly to verified housing providers and utility companies to ensure absolute accountability and immediate shelter security.',
     highlights: [
-      'Direct-to-vendor rent & mortgage payments',
+      'Direct-to-vendor rent and mortgage relief',
       'Electric, gas, and municipal water utility protection',
-      'Immediate intervention preventing family displacement',
-      'Confidential intake and individualized budgeting support'
+      'Intervention designed to keep children safe in their homes',
+      'Confidential review conducted with honor and respect'
     ],
     impactStat: '100%',
-    impactLabel: 'Direct vendor payment verification to preserve shelter stability',
+    impactLabel: 'Direct-to-vendor verification',
     badge: 'Housing & Utilities'
   },
   {
     id: 'food-assistance',
-    pillarNumber: '02',
-    title: 'Food Assistance Bridge',
-    shortTitle: 'Food Bridge',
+    pillarNumber: '2',
+    title: 'Food Assistance',
+    shortTitle: 'Food Assistance',
     focus: 'Emergency grocery support to provide access to fresh food and essential nutrition during unexpected hardship or sudden transitions.',
-    details: 'No child or caregiver should ever wonder where their next nutritious meal is coming from. Our Food Assistance Bridge delivers wholesome groceries, pantry essentials, fresh produce, and emergency food packages so families remain nourished during vulnerable seasons.',
+    details: 'No family or child should ever wonder where their next nutritious meal is coming from. Our Food Assistance Bridge delivers wholesome groceries, pantry essentials, and fresh produce so families remain healthy and nourished during vulnerable times.',
     highlights: [
-      'Weekly emergency food box distributions',
+      'Emergency grocery assistance for local households',
       'Nutrient-dense shelf staples, grains, and proteins',
-      'Special accommodation for families with growing school-age children',
-      'Seamless coordination with local community pantries'
+      'Focused nourishment for families with growing school-age children',
+      'Accessible distribution coordination across Eastern Collin & Dallas counties'
     ],
-    impactStat: 'Weekly',
-    impactLabel: 'Scheduled distribution mornings for local Collin & Dallas families',
+    impactStat: 'Active',
+    impactLabel: 'Emergency nutrition support',
     badge: 'Nutrition Support'
   },
   {
-    id: 'youth-empowerment',
-    pillarNumber: '03',
-    title: 'Youth Empowerment Programs',
+    id: 'youth-programs',
+    pillarNumber: '3',
+    title: 'Youth Programs (Ages 8-17)',
     shortTitle: 'Youth Programs',
     focus: 'Age-appropriate, education-packed programs and community workshops for youth ages 8–17, fostering leadership, life skills, and educational confidence.',
-    details: 'Breaking generational poverty begins by investing in children. Our youth workshops combine practical financial wellness, public speaking, educational coaching, and teamwork to nurture confident, resilient young leaders prepared for future success.',
+    details: 'Breaking generational poverty begins by investing in young people. Our workshops teach practical financial literacy, communication skills, and personal goal-setting to nurture confident, resilient youth prepared for lifelong success.',
     highlights: [
-      'Interactive financial literacy & savings workshops',
-      'Public speaking, communication, and leadership clinics',
-      'Academic mentorship and career exploration seminars',
-      'Civic engagement and youth-led community projects'
+      'Interactive financial literacy and budgeting workshops',
+      'Public speaking and leadership confidence labs',
+      'Academic coaching and career readiness exploration',
+      'Positive mentorship in a supportive peer environment'
     ],
     impactStat: 'Ages 8–17',
-    impactLabel: 'Targeted enrichment curriculum fostering long-term resilience',
+    impactLabel: 'Youth leadership & literacy',
     badge: 'Next Generation'
   }
 ];
 
-export const PARTNER_RESOURCES: PartnerResource[] = [
+export const SAFETY_NET_PARTNERS: PartnerResource[] = [
   {
-    id: 'assistance-center-collin',
-    name: 'Assistance Center of Collin County',
-    shortName: 'Assistance Center',
-    services: 'Emergency rent, mortgage, and utility support for Collin County families facing sudden financial crisis.',
+    id: 'accc',
+    name: 'Assistance Center of Collin County (ACCC)',
+    shortName: 'ACCC',
+    services: 'Emergency rent, mortgage, and utility support for families in acute crisis.',
     phone: '(972) 422-1850',
     website: 'https://assistancecenter.org',
     websiteDisplay: 'assistancecenter.org',
-    bestFor: 'Acute rent and utility assistance'
+    bestFor: 'Emergency Rent & Utility Relief'
   },
   {
-    id: 'all-community-outreach',
+    id: 'aco',
     name: 'All Community Outreach (ACO)',
-    shortName: 'ACO Cares',
-    services: 'Comprehensive emergency family aid, community food pantry, employment coaching, and education services.',
+    shortName: 'ACO',
+    services: 'Comprehensive emergency family aid, community food pantry, and stabilization.',
     phone: '(972) 727-9131',
     website: 'https://acocares.org',
     websiteDisplay: 'acocares.org',
-    bestFor: 'Pantry distribution & family stabilization'
+    bestFor: 'Comprehensive Family Aid & Pantry'
   },
   {
     id: 'texas-211',
     name: 'Texas 2-1-1 Health & Human Services',
-    shortName: 'Texas 2-1-1 Directory',
-    services: 'Statewide 24/7 comprehensive directory connecting Texans to local housing, food, child care, and mental health aid.',
+    shortName: 'Texas 2-1-1',
+    services: 'Statewide 24/7 directory connecting Texans to local housing, food, and family resources.',
     phone: 'Dial 2-1-1 or (877) 541-7905',
     website: 'https://211texas.org',
     websiteDisplay: '211texas.org',
-    bestFor: 'Immediate 24/7 statewide resource routing'
+    bestFor: '24/7 Statewide Referral Directory'
   }
 ];
 
-export const INITIAL_COMMUNITY_EVENTS: CommunityEvent[] = [
+export const COMMUNITY_EVENTS: CommunityEvent[] = [
   {
     id: 'evt-01',
     title: 'Youth Leadership & Financial Literacy Lab',
     category: 'Youth Empowerment',
     date: '2026-11-07',
     time: '10:00 AM – 12:30 PM CST',
-    locationName: 'Community Education Suite',
-    address: 'East Collin Community Center, Wylie, TX',
-    description: 'An interactive hands-on workshop for youth ages 12–17 covering personal budgeting, smart saving habits, bank accounts, and building confidence through public speaking exercises.',
+    locationName: 'East Collin Community Suite',
+    address: 'Wylie, TX 75098',
+    description: 'An interactive hands-on workshop for youth ages 12–17 covering personal budgeting, savings goals, bank basics, and public speaking exercises.',
     capacity: 25,
     registeredCount: 18,
     audience: 'Youth Ages 12–17 & Parents',
@@ -117,9 +136,9 @@ export const INITIAL_COMMUNITY_EVENTS: CommunityEvent[] = [
     category: 'Food Assistance',
     date: '2026-11-10',
     time: '9:00 AM – 1:00 PM CST',
-    locationName: 'Pathways Community Outreach Station',
-    address: 'Lavon Community Hub, Lavon, TX',
-    description: 'Weekly distribution of wholesome grocery boxes, shelf-stable proteins, fresh vegetables, and household essentials for registered local families in our service territory.',
+    locationName: 'Community Outreach Hub',
+    address: 'Lavon, TX 75166',
+    description: 'Weekly distribution of wholesome grocery boxes, shelf-stable proteins, fresh vegetables, and household essentials for local families in our service territory.',
     capacity: 60,
     registeredCount: 42,
     audience: 'Families with Children & Individuals in Need',
@@ -132,8 +151,8 @@ export const INITIAL_COMMUNITY_EVENTS: CommunityEvent[] = [
     date: '2026-11-14',
     time: '1:00 PM – 3:30 PM CST',
     locationName: 'Murphy Community Meeting Hall',
-    address: '205 North Murphy Rd, Murphy, TX',
-    description: 'One-on-one document review and intake navigation for families needing help applying for direct-to-vendor emergency utility assistance, seasonal weatherization, and budgeting help.',
+    address: 'Murphy, TX 75094',
+    description: 'One-on-one document navigation for families needing help applying for direct-to-vendor emergency utility assistance and budgeting help.',
     capacity: 30,
     registeredCount: 19,
     audience: 'Collin & Dallas County Residents',
@@ -145,71 +164,43 @@ export const INITIAL_COMMUNITY_EVENTS: CommunityEvent[] = [
     category: 'Volunteer & Community',
     date: '2026-11-18',
     time: '6:00 PM – 7:30 PM CST',
-    locationName: 'Rockwall Public Library Meeting Room',
-    address: '1215 E Yellow Jacket Ln, Rockwall, TX',
-    description: 'Learn how to become a mentor for youth workshops, assist with Tuesday/Wednesday food distribution packing, and represent Pathways Assistance Center at neighborhood events.',
+    locationName: 'Rockwall Public Library Room',
+    address: 'Rockwall, TX 75087',
+    description: 'Learn how to mentor in youth workshops, assist with grocery distribution packing, and support neighborhood outreach.',
     capacity: 35,
     registeredCount: 22,
     audience: 'Prospective & Current Volunteers',
     featured: true
-  },
-  {
-    id: 'evt-05',
-    title: 'Youth Public Speaking & Career Exploration Seminar',
-    category: 'Youth Empowerment',
-    date: '2026-11-21',
-    time: '10:30 AM – 1:00 PM CST',
-    locationName: 'Sachse Community Center',
-    address: '3815 Sachse Rd, Sachse, TX',
-    description: 'Youth ages 13–18 practice interview prep, speech delivery, resume building, and connect with guest community leaders who share pathways into trades and higher education.',
-    capacity: 25,
-    registeredCount: 14,
-    audience: 'Teens Ages 13–18',
-    featured: false
-  },
-  {
-    id: 'evt-06',
-    title: 'Holiday Food Basket & Winter Essentials Packing',
-    category: 'Volunteer & Community',
-    date: '2026-11-24',
-    time: '9:00 AM – 1:00 PM CST',
-    locationName: 'Rowlett Community Center',
-    address: '5300 Main St, Rowlett, TX 75089',
-    description: 'Volunteer teams gather to prepare emergency holiday meal boxes, winter pantry staples, and children’s essentials for families facing financial hardship.',
-    capacity: 40,
-    registeredCount: 31,
-    audience: 'Volunteers, Families, & Civic Groups',
-    featured: true
   }
 ];
 
-export const DONATION_TIERS = [
-  {
-    amount: 25,
-    label: '$25',
-    impact: 'Provides a fresh emergency grocery bridge box with proteins, produce, and staple pantry goods for a child for one week.'
-  },
-  {
-    amount: 50,
-    label: '$50',
-    impact: 'Supplies curriculum workbooks, financial literacy tools, and hands-on learning kits for 2 youth workshop attendees.'
-  },
-  {
-    amount: 100,
-    label: '$100',
-    popular: true,
-    impact: 'Funds an emergency micro-grant toward critical residential electric, water, or gas utilities to prevent household disconnection.'
-  },
-  {
-    amount: 250,
-    label: '$250',
-    impact: 'Provides comprehensive emergency housing relief preventing eviction and keeping a stable roof over a family with young children.'
-  }
-];
+export function downloadEventIcs(event: CommunityEvent): void {
+  const dateFormatted = event.date.replace(/-/g, '');
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Pathways Assistance Center//Community Events//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${event.id}@pathwaysac.org`,
+    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+    `DTSTART;VALUE=DATE:${dateFormatted}`,
+    `SUMMARY:${event.title} — Pathways Assistance Center`,
+    `DESCRIPTION:${event.description.replace(/\n/g, ' ')}\\n\\nAudience: ${event.audience}`,
+    `LOCATION:${event.locationName}, ${event.address}`,
+    'STATUS:CONFIRMED',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
 
-export const IN_KIND_CATEGORIES = [
-  { id: 'children-clothing', label: "New Children's Clothing & Shoes (Ages 4–17)" },
-  { id: 'toiletries', label: 'Unopened Personal Care Items & Toiletries' },
-  { id: 'pantry-staples', label: 'Unexpired Non-Perishable Food & Canned Proteins' },
-  { id: 'school-supplies', label: 'Educational Supplies & Workshop Notebooks' }
-];
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', `${event.id}-pathways-event.ics`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}

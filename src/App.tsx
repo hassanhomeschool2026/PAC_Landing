@@ -129,9 +129,15 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
-                alt="Financial Assistance" 
-                referrerPolicy="no-referrer"
+                src="/assets/PAC_FinanAssist.png" 
+                alt="Short Term Financial Assistance" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80';
+                  }
+                }}
               />
             </div>
           </div>
@@ -147,9 +153,15 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" 
-                alt="Fresh Food Assistance" 
-                referrerPolicy="no-referrer"
+                src="/assets/PAC_FoodAssist.png" 
+                alt="Food Assistance Bridge" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80';
+                  }
+                }}
               />
             </div>
           </div>
@@ -165,9 +177,15 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" 
+                src="/assets/PAC_Youth.png" 
                 alt="Youth Programs" 
-                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80';
+                  }
+                }}
               />
             </div>
           </div>

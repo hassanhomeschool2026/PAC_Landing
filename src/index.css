@@ -157,7 +157,8 @@ header {
   position: relative;
   height: 75vh;
   min-height: 500px;
-  background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80') center center / cover no-repeat;
+  background-color: #222222;
+  background: url('/assets/PAC_Hero.png') center center / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;

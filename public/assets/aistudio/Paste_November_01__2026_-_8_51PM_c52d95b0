@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathways Assistance Center — Dedicated to Helping Others</title>
+  <meta name="description" content="Pathways Assistance Center is a 501(c)(3) nonprofit providing emergency financial bridge support, food assistance, and youth educational programs across Collin and Dallas counties." />
+
+  <!-- Typography matching your original clean editorial brand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pac-pink: #e79a9b;
+      --pac-pink-dark: #d58788;
+      --pac-black: #111111;
+      --pac-charcoal: #222222;
+      --pac-gray: #555555;
+      --pac-light-bg: #f8f8f8;
+      --pac-white: #ffffff;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--pac-charcoal);
+      background-color: var(--pac-white);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    /* --- Navigation Bar --- */
+    header {
+      background: var(--pac-white);
+      border-bottom: 1px solid #eaeaea;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* PLACEHOLDER FOR YOUR LOGO PNG */
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--pac-black);
+      text-align: left;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: #777777;
+      font-style: italic;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      color: #333333;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+      color: var(--pac-pink);
+    }
+
+    .btn-donate-nav {
+      background-color: var(--pac-black);
+      color: #ffffff !important;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      letter-spacing: 1.5px;
+    }
+
+    .btn-donate-nav:hover {
+      background-color: var(--pac-pink);
+      color: #ffffff !important;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      position: relative;
+      height: 75vh;
+      min-height: 500px;
+      /* PLACEHOLDER: Replace URL with your official girl hero image */
+      background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80') center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-overlay {
+      width: 100%;
+      background: linear-gradient(to top, rgba(231, 154, 155, 0.92) 0%, rgba(231, 154, 155, 0.70) 50%, rgba(0, 0, 0, 0.2) 100%);
+      padding: 50px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-overlay h2 {
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      color: #ffffff;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    .hero-overlay p {
+      font-family: 'Lato', sans-serif;
+      color: #ffffff;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      font-weight: 300;
+    }
+
+    /* --- Bands & Container Disciplines --- */
+    .section-band-pink {
+      background-color: var(--pac-pink);
+      color: #ffffff;
+      padding: 70px 24px;
+    }
+
+    .section-band-white {
+      background-color: var(--pac-white);
+      color: var(--pac-charcoal);
+      padding: 70px 24px;
+    }
+
+    .section-band-gray {
+      background-color: var(--pac-light-bg);
+      color: var(--pac-charcoal);
+      padding: 65px 24px;
+    }
+
+    .section-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .title-white {
+      font-size: 1.85rem;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .subtitle-white {
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .title-pink {
+      font-size: 1.85rem;
+      margin-bottom: 6px;
+      color: var(--pac-pink);
+    }
+
+    .subtitle-dark {
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-bottom: 45px;
+      color: var(--pac-gray);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .who-we-are-text {
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    /* --- Ways We Help (Alternating 2-Column Rows) --- */
+    .program-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 55px;
+    }
+
+    .program-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .program-content {
+      flex: 1;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .program-content h3 {
+      font-size: 1.15rem;
+      color: var(--pac-pink);
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    .program-content p {
+      font-size: 0.95rem;
+      color: #444444;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .btn-pill-pink {
+      display: inline-block;
+      border: 1px solid var(--pac-pink);
+      color: var(--pac-pink);
+      padding: 7px 26px;
+      border-radius: 24px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-pill-pink:hover {
+      background-color: var(--pac-pink);
+      color: #ffffff;
+    }
+
+    .program-image {
+      flex: 1;
+      height: 310px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .program-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- Events Grid --- */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .event-card {
+      background: var(--pac-white);
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .event-card-img {
+      height: 190px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .event-card-body {
+      padding: 24px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .event-card-body h3 {
+      font-size: 1.05rem;
+      color: var(--pac-black);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .event-card-body p {
+      font-size: 0.9rem;
+      color: var(--pac-gray);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* --- Forms Hub (Dedicated Section) --- */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .form-hub-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 6px;
+      padding: 30px 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-hub-card h3 {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+    }
+
+    .form-hub-card p {
+      font-size: 0.9rem;
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .btn-hub-action {
+      display: inline-block;
+      background-color: var(--pac-black);
+      color: #ffffff;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .btn-hub-action:hover {
+      background-color: #ffffff;
+      color: var(--pac-black);
+    }
+
+    /* --- Split Row: Clock & Resources --- */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .split-image {
+      height: 350px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .split-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .split-content {
+      padding: 16px;
+      text-align: left;
+    }
+
+    .split-content h3 {
+      text-align: left;
+      font-size: 1.25rem;
+      color: #333333;
+      margin-bottom: 16px;
+    }
+
+    .resource-list {
+      list-style: none;
+      margin-top: 14px;
+    }
+
+    .resource-list li {
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #444444;
+    }
+
+    .resource-list a {
+      color: var(--pac-pink);
+      font-weight: 600;
+    }
+
+    /* --- Service Areas & Contact Details --- */
+    .service-cities-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 28px;
+      max-width: 750px;
+      margin: 20px auto 0;
+      font-size: 1.05rem;
+      font-weight: 300;
+    }
+
+    .contact-details p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .contact-details a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* --- GuideStar Seal Box --- */
+    .guidestar-box {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .guidestar-seal-img {
+      max-width: 180px;
+      height: auto;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    /* --- Donate Section --- */
+    .donate-box {
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .btn-stripe-donate {
+      display: inline-block;
+      background-color: var(--pac-black);
+      color: #ffffff;
+      padding: 15px 44px;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-top: 24px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-stripe-donate:hover {
+      background-color: #ffffff;
+      color: var(--pac-black);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #1a1a1a;
+      color: #888888;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    /* --- Responsive Breakpoint --- */
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+      .program-row, .program-row.reverse, .split-grid {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+      .hero-overlay h2 {
+        font-size: 1.55rem;
+      }
+      .program-image, .split-image {
+        height: 240px;
+        width: 100%;
+      }
+      .split-content {
+        text-align: center;
+      }
+      .split-content h3 {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Header / Streamlined 5-Item Navigation -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-logo">
+        <!-- LOGO PLACEHOLDER: Replace src with your official PAC logo PNG -->
+        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=120&q=80" alt="Pathways Assistance Center Logo" class="brand-logo-img" />
+        <div class="brand-text">
+          <h1>PATHWAYS ASSISTANCE CENTER</h1>
+          <span>Pathways Dedicated to Helping Others</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#forms">PAC Forms</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="https://donate.stripe.com/fZudRb5J4dDsew934AgnK00" target="_blank" rel="noopener noreferrer" class="btn-donate-nav">
+            DONATE
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section (Young girl looking up) -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <h2>PATHWAYS ASSISTANCE CENTER</h2>
+      <p>Pathways Dedicated to Helping Others</p>
+    </div>
+  </section>
+
+  <!-- 3. Band 1: Who We Are (Original Narrative) -->
+  <section id="about" class="section-band-pink">
+    <div class="section-container">
+      <h2 class="title-white">WHO WE ARE</h2>
+      <p class="subtitle-white">About Us</p>
+      <div class="who-we-are-text">
+        <p>
+          We know what it's like to need a helping hand at least once in our lives. We know that sometimes all it takes to change the world is a little support. Well before our official formation, we were determined to make an impact. The core of our efforts is to provide relief to families and educate, starting at the youth level. Poverty is commonly generational. We strongly believe this cycle is broken when we begin educating and offering support at the children's level.
+        </p>
+        <br />
+        <p>
+          We help families because we know personally that children can have difficulties reaching their fullest potential when their family is struggling financially or in other ways. We know that children can be mentally and emotionally affected by these situations, even though they can't quite explain or recognize it. At Pathways Assistance Center we believe in uplifting those that come to us. Some need help and this may be the only time they will in their lives. No need to belittle them. Our focus is making sure children are taken care of and there is one more place to go when the assistance is needed. We understand those needs and feel that everyone deserves to be treated with dignity, respect and entitled to privacy in those times. We are committed to paving paths that strengthens families, communities, our economy and lead to success. Through all of our endeavors, we pray each family's need is temporary and that we boldly display the conviction behind our beliefs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Band 2: Ways We Help (The 3 Core Pillars) -->
+  <section id="programs" class="section-band-white">
+    <div class="section-container">
+      <h2 class="title-pink">WAYS WE HELP</h2>
+      <p class="subtitle-dark">Committed to Making a Positive Impact in the Community</p>
+
+      <!-- Pillar 1: Financial Assistance -->
+      <div class="program-row">
+        <div class="program-content">
+          <h3>SHORT TERM FINANCIAL ASSISTANCE</h3>
+          <p>
+            We provide short term emergency financial bridge assistance with rent/mortgage and critical utilities to prevent disruptions and stabilize homes for local families with children.
+          </p>
+          <a href="#forms" class="btn-pill-pink">Apply / Inquire</a>
+        </div>
+        <div class="program-image">
+          <!-- PLACEHOLDER: Woman at desk/hands on head -->
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Financial Assistance" />
+        </div>
+      </div>
+
+      <!-- Pillar 2: Food Assistance -->
+      <div class="program-row reverse">
+        <div class="program-content">
+          <h3>FOOD ASSISTANCE</h3>
+          <p>
+            We provide grocery assistance and emergency food bridge support to ensure local children and parents have immediate access to fresh, nourishing meals during unexpected hardships.
+          </p>
+          <a href="#forms" class="btn-pill-pink">Apply / Inquire</a>
+        </div>
+        <div class="program-image">
+          <!-- PLACEHOLDER: Grocery bag with fresh produce -->
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Fresh Food Assistance" />
+        </div>
+      </div>
+
+      <!-- Pillar 3: Youth Programs -->
+      <div class="program-row">
+        <div class="program-content">
+          <h3>YOUTH PROGRAMS</h3>
+          <p>
+            We host several age-appropriate, fun-filled, education-packed programs and events for youth ages 8–17 throughout the year. Children are VIP at Pathways Assistance Center and the main reasons why we are here!
+          </p>
+          <a href="#forms" class="btn-pill-pink">Get Involved</a>
+        </div>
+        <div class="program-image">
+          <!-- PLACEHOLDER: Children reading books in library -->
+          <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" alt="Youth Programs" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Band 3: PAC Forms Hub (Dedicated Forms Destination) -->
+  <section id="forms" class="section-band-pink">
+    <div class="section-container">
+      <h2 class="title-white">PATHWAYS ASSISTANCE CENTER FORMS</h2>
+      <p class="subtitle-white">Select a form below to complete your registration or inquiry online.</p>
+
+      <div class="forms-grid">
+        <!-- Form Button 1: Volunteer Application -->
+        <div class="form-hub-card">
+          <div>
+            <h3>VOLUNTEER APPLICATION</h3>
+            <p>Join our volunteer team to support youth mentoring, community outreach, and distribution events.</p>
+          </div>
+          <!-- Link to your Volunteer Google Form -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" target="_blank" rel="noopener noreferrer" class="btn-hub-action">
+            Volunteer Application
+          </a>
+        </div>
+
+        <!-- Form Button 2: Community & Assistance Inquiry -->
+        <div class="form-hub-card">
+          <div>
+            <h3>ASSISTANCE & INQUIRY</h3>
+            <p>Submit a direct inquiry for youth programs, emergency grocery bridge aid, or family utility questions.</p>
+          </div>
+          <!-- Link to your Inquiry Google Form -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" target="_blank" rel="noopener noreferrer" class="btn-hub-action">
+            Inquiry Form
+          </a>
+        </div>
+
+        <!-- Form Button 3: Youth Registration / Event RSVP -->
+        <div class="form-hub-card">
+          <div>
+            <h3>YOUTH PROGRAM REGISTRATION</h3>
+            <p>Register your children (ages 8–17) for upcoming educational workshops, camps, and seasonal initiatives.</p>
+          </div>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" target="_blank" rel="noopener noreferrer" class="btn-hub-action">
+            Youth Registration
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Band 4: Upcoming Events & Initiatives -->
+  <section id="events" class="section-band-white">
+    <div class="section-container">
+      <h2 class="title-pink">UPCOMING EVENTS & INITIATIVES</h2>
+      <p class="subtitle-dark">Paving paths through community education, youth empowerment, and family support</p>
+
+      <div class="events-grid">
+        <!-- Event 1: Camp Pathways -->
+        <div class="event-card">
+          <!-- PLACEHOLDER: Chalkboard / Summer camp graphic -->
+          <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" alt="Camp Pathways" class="event-card-img" />
+          <div class="event-card-body">
+            <div>
+              <h3>CAMP PATHWAYS: LEADERS WITHIN</h3>
+              <p>Annual summer enrichment and leadership workshop series designed to inspire and equip youth ages 8–17.</p>
+            </div>
+            <a href="#forms" class="btn-pill-pink">Registration & Info</a>
+          </div>
+        </div>
+
+        <!-- Event 2: Community Bridge Drive -->
+        <div class="event-card">
+          <!-- PLACEHOLDER: Food distribution / volunteers -->
+          <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Food Bridge Distribution" class="event-card-img" />
+          <div class="event-card-body">
+            <div>
+              <h3>COMMUNITY FOOD BRIDGE DISTRIBUTION</h3>
+              <p>Pop-up food support drives providing fresh groceries and nutrition to families experiencing sudden transitions.</p>
+            </div>
+            <a href="#forms" class="btn-pill-pink">Volunteer / Inquire</a>
+          </div>
+        </div>
+
+        <!-- Event 3: Holiday Family Support -->
+        <div class="event-card">
+          <!-- PLACEHOLDER: Ribbons / Gift Giving -->
+          <img src="https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=600&q=80" alt="Holiday Event" class="event-card-img" />
+          <div class="event-card-body">
+            <div>
+              <h3>JOYFUL HOLIDAYS FAMILY EVENT</h3>
+              <p>Bringing dignity and joy to local households through seasonal family blessings and children's support.</p>
+            </div>
+            <a href="#forms" class="btn-pill-pink">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Band 5: Service Areas -->
+  <section id="service-areas" class="section-band-pink">
+    <div class="section-container">
+      <h2 class="title-white">SERVICE AREAS</h2>
+      <p class="subtitle-white">Proudly serving local families across Collin and Dallas counties</p>
+      <ul class="service-cities-list">
+        <li>• Wylie</li>
+        <li>• Murphy</li>
+        <li>• Lavon</li>
+        <li>• Rockwall</li>
+        <li>• Rowlett (75089)</li>
+        <li>• Sachse</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. Band 6: Split Grid - Clock & Community Safety-Net Resources -->
+  <section id="resources" class="section-band-gray">
+    <div class="section-container">
+      <div class="split-grid">
+        <div class="split-image">
+          <!-- Analog Clock Graphic -->
+          <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=800&q=80" alt="Hours & Assistance Schedules" />
+        </div>
+        <div class="split-content">
+          <h3>COMMUNITY RESOURCES</h3>
+          <p style="font-size: 0.95rem; color: #555; margin-bottom: 16px;">
+            Direct financial grants are disbursed based on active funding cycles. If your family is facing immediate utility disconnection or housing hardship, connect directly with our Collin County partners:
+          </p>
+          <ul class="resource-list">
+            <li>
+              <strong>Assistance Center of Collin County:</strong><br />
+              Emergency Rent & Utility Relief • Call <a href="tel:9724221850">(972) 422-1850</a> or visit <a href="https://assistancecenter.org" target="_blank" rel="noopener noreferrer">assistancecenter.org</a>
+            </li>
+            <li>
+              <strong>All Community Outreach (ACO):</strong><br />
+              Local Emergency Aid & Pantries • Call <a href="tel:9727279131">(972) 727-9131</a> or visit <a href="https://acocares.org" target="_blank" rel="noopener noreferrer">acocares.org</a>
+            </li>
+            <li>
+              <strong>Texas 2-1-1:</strong><br />
+              Statewide 24/7 Crisis Resource Directory • Dial <a href="tel:211">2-1-1</a> or visit <a href="https://www.211texas.org" target="_blank" rel="noopener noreferrer">211texas.org</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Band 7: Contact Information -->
+  <section id="contact" class="section-band-pink">
+    <div class="section-container contact-details">
+      <h2 class="title-white">CONTACT PATHWAYS ASSISTANCE CENTER</h2>
+      <p style="margin-top: 20px;">
+        5900 Balcones Drive, Suite 165<br />
+        Austin, Texas 78731
+      </p>
+      <p style="margin-top: 12px;">
+        <a href="mailto:info@pathwaysac.org">info@pathwaysac.org</a><br />
+        B: (972) 581-9322<br />
+        F: (972) 551-4442
+      </p>
+    </div>
+  </section>
+
+  <!-- 10. Band 8: GuideStar / Candid Seal -->
+  <section class="section-band-white">
+    <div class="section-container guidestar-box">
+      <h2 class="title-pink">GUIDESTAR SEAL</h2>
+      <p class="subtitle-dark" style="margin-bottom: 14px;">
+        This recognition shows commitment to complete transparency and trust!
+      </p>
+      <!-- GUIDESTAR SEAL PLACEHOLDER: Replace image source or paste official Candid widget here -->
+      <div>
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=260&q=80" alt="GuideStar Silver Transparency Seal" class="guidestar-seal-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Band 9: Donate Section -->
+  <section id="donate" class="section-band-pink">
+    <div class="section-container donate-box">
+      <h2 class="title-white">DONATE</h2>
+      <p class="subtitle-white" style="margin-bottom: 8px;">
+        You can GIVE directly to support our local families and youth programs!
+      </p>
+      <p style="font-size: 0.95rem; font-weight: 300;">
+        We are a 501(c)(3) organization. Your donations are tax-deductible!
+      </p>
+      <!-- Live Stripe Payment Link -->
+      <a href="https://donate.stripe.com/fZudRb5J4dDsew934AgnK00" target="_blank" rel="noopener noreferrer" class="btn-stripe-donate">
+        Donate Here!
+      </a>
+    </div>
+  </section>
+
+  <!-- 12. Footer -->
+  <footer>
+    <p>© 2026 by Pathways Assistance Center. All Rights Reserved. 501(c)(3) Tax-Exempt Public Charity.</p>
+  </footer>
+
+</body>
+</html>

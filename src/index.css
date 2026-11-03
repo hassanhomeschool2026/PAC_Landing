@@ -1,9 +1,10 @@
 :root {
   --pac-pink: #e79a9b;
-  --pac-pink-dark: #d8898a;
-  --pac-dark: #222222;
+  --pac-pink-dark: #d58788;
+  --pac-black: #111111;
+  --pac-charcoal: #222222;
   --pac-gray: #555555;
-  --pac-light-bg: #f7f7f7;
+  --pac-light-bg: #f8f8f8;
   --pac-white: #ffffff;
   --max-width: 1100px;
 }
@@ -20,7 +21,7 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  color: var(--pac-dark);
+  color: var(--pac-charcoal);
   background-color: var(--pac-white);
   line-height: 1.7;
   font-weight: 400;
@@ -47,7 +48,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 14px 24px;
+  padding: 12px 24px;
 }
 
 .nav-container {
@@ -60,28 +61,37 @@ header {
 
 .brand-logo {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
-.brand-logo h1 {
-  font-size: 1.15rem;
+/* LOGO PNG / SVG */
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  font-size: 1.05rem;
   letter-spacing: 2px;
-  font-weight: 500;
-  color: #333333;
+  font-weight: 600;
+  color: var(--pac-black);
   text-align: left;
 }
 
-.brand-logo span {
+.brand-text span {
   font-size: 0.75rem;
   letter-spacing: 1px;
   color: #777777;
   font-style: italic;
+  display: block;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   list-style: none;
 }
 
@@ -89,7 +99,7 @@ header {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 1.5px;
-  color: #444444;
+  color: #333333;
   text-transform: uppercase;
 }
 
@@ -98,26 +108,27 @@ header {
 }
 
 .btn-donate-nav {
-  background-color: var(--pac-pink);
+  background-color: var(--pac-black);
   color: #ffffff !important;
-  padding: 8px 20px;
+  padding: 9px 22px;
   border-radius: 4px;
   font-weight: 600 !important;
   letter-spacing: 1.5px;
 }
 
 .btn-donate-nav:hover {
-  background-color: var(--pac-pink-dark);
+  background-color: var(--pac-pink);
+  color: #ffffff !important;
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Toggle & Menu */
 .mobile-toggle {
   display: none;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 6px;
-  color: #333333;
+  color: var(--pac-black);
 }
 
 .mobile-dropdown {
@@ -144,8 +155,8 @@ header {
 /* --- Hero Section --- */
 .hero {
   position: relative;
-  height: 80vh;
-  min-height: 520px;
+  height: 75vh;
+  min-height: 500px;
   background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80') center center / cover no-repeat;
   display: flex;
   align-items: flex-end;
@@ -154,17 +165,17 @@ header {
 
 .hero-overlay {
   width: 100%;
-  background: linear-gradient(to top, rgba(231, 154, 155, 0.88) 0%, rgba(231, 154, 155, 0.65) 45%, rgba(0, 0, 0, 0.15) 100%);
-  padding: 60px 20px;
+  background: linear-gradient(to top, rgba(231, 154, 155, 0.92) 0%, rgba(231, 154, 155, 0.70) 50%, rgba(0, 0, 0, 0.2) 100%);
+  padding: 50px 20px 40px;
   text-align: center;
 }
 
 .hero-overlay h2 {
   font-size: 2.2rem;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   color: #ffffff;
   font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hero-overlay p {
@@ -175,24 +186,23 @@ header {
   font-weight: 300;
 }
 
-/* --- Band Styling --- */
+/* --- Bands & Container Disciplines --- */
 .section-band-pink {
   background-color: var(--pac-pink);
   color: #ffffff;
   padding: 70px 24px;
-  text-align: center;
 }
 
 .section-band-white {
   background-color: var(--pac-white);
-  color: var(--pac-dark);
+  color: var(--pac-charcoal);
   padding: 70px 24px;
 }
 
 .section-band-gray {
   background-color: var(--pac-light-bg);
-  color: var(--pac-dark);
-  padding: 60px 24px;
+  color: var(--pac-charcoal);
+  padding: 65px 24px;
 }
 
 .section-container {
@@ -200,56 +210,53 @@ header {
   margin: 0 auto;
 }
 
-.section-title-white {
+.title-white {
   font-size: 1.85rem;
   margin-bottom: 6px;
   color: #ffffff;
 }
 
-.section-subtitle-white {
-  font-size: 1rem;
+.subtitle-white {
+  font-size: 0.95rem;
   font-weight: 300;
   margin-bottom: 30px;
   color: #ffffff;
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
+  text-align: center;
 }
 
-.section-title-pink {
+.title-pink {
   font-size: 1.85rem;
   margin-bottom: 6px;
   color: var(--pac-pink);
 }
 
-.section-subtitle-dark {
+.subtitle-dark {
   font-size: 0.95rem;
   font-weight: 400;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
   color: var(--pac-gray);
   text-align: center;
   letter-spacing: 1px;
 }
 
-/* --- "Who We Are" Copy --- */
 .who-we-are-text {
   max-width: 860px;
   margin: 0 auto;
   font-size: 1.05rem;
   line-height: 1.9;
   font-weight: 300;
+  text-align: center;
 }
 
-/* --- Ways We Help (Alternating Rows) --- */
+/* --- Ways We Help (Alternating 2-Column Rows) --- */
 .program-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 48px;
-  margin-bottom: 64px;
-}
-
-.program-row:last-child {
-  margin-bottom: 0;
+  margin-bottom: 55px;
 }
 
 .program-row.reverse {
@@ -259,13 +266,13 @@ header {
 .program-content {
   flex: 1;
   text-align: center;
-  padding: 20px;
+  padding: 16px;
 }
 
 .program-content h3 {
   font-size: 1.15rem;
   color: var(--pac-pink);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   letter-spacing: 2px;
 }
 
@@ -273,28 +280,28 @@ header {
   font-size: 0.95rem;
   color: #444444;
   line-height: 1.8;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.program-btn {
+.btn-pill-pink {
   display: inline-block;
   border: 1px solid var(--pac-pink);
   color: var(--pac-pink);
   padding: 7px 26px;
-  border-radius: 20px;
+  border-radius: 24px;
   font-size: 0.8rem;
-  text-transform: capitalize;
   letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.program-btn:hover {
+.btn-pill-pink:hover {
   background-color: var(--pac-pink);
   color: #ffffff;
 }
 
 .program-image {
   flex: 1;
-  height: 320px;
+  height: 310px;
   overflow: hidden;
   border-radius: 4px;
 }
@@ -306,18 +313,116 @@ header {
   display: block;
 }
 
-/* --- Split Band: Clock & Resources --- */
+/* --- Events Grid --- */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.event-card {
+  background: var(--pac-white);
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.event-card-img {
+  height: 190px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.event-card-body {
+  padding: 24px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-card-body h3 {
+  font-size: 1.05rem;
+  color: var(--pac-black);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.event-card-body p {
+  font-size: 0.9rem;
+  color: var(--pac-gray);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* --- Forms Hub (Dedicated Section) --- */
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-hub-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  padding: 30px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-hub-card h3 {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+}
+
+.form-hub-card p {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.btn-hub-action {
+  display: inline-block;
+  background-color: var(--pac-black);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.btn-hub-action:hover {
+  background-color: #ffffff;
+  color: var(--pac-black);
+}
+
+/* --- Split Row: Clock & Resources --- */
 .split-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  max-width: var(--max-width);
-  margin: 0 auto;
   gap: 40px;
 }
 
 .split-image {
-  height: 360px;
+  height: 350px;
   overflow: hidden;
   border-radius: 4px;
 }
@@ -329,20 +434,20 @@ header {
 }
 
 .split-content {
-  padding: 20px;
+  padding: 16px;
   text-align: left;
 }
 
 .split-content h3 {
   text-align: left;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: #333333;
   margin-bottom: 16px;
 }
 
 .resource-list {
   list-style: none;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .resource-list li {
@@ -356,7 +461,7 @@ header {
   font-weight: 600;
 }
 
-/* --- Service Areas & Contact Lists --- */
+/* --- Service Areas & Contact Details --- */
 .service-cities-list {
   list-style: none;
   display: flex;
@@ -373,6 +478,7 @@ header {
   font-size: 1.05rem;
   line-height: 1.8;
   font-weight: 300;
+  text-align: center;
 }
 
 .contact-details a {
@@ -380,23 +486,18 @@ header {
   text-decoration: underline;
 }
 
-/* --- Candid / GuideStar Seal --- */
+/* --- GuideStar Seal Box --- */
 .guidestar-box {
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
 }
 
-.candid-badge {
-  display: inline-block;
+.guidestar-seal-img {
+  max-width: 180px;
+  height: auto;
   margin-top: 20px;
-  border: 1px solid #d1d5db;
-  padding: 12px 24px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  color: #4b5563;
-  letter-spacing: 1px;
-  border-radius: 2px;
+  display: inline-block;
 }
 
 /* --- Donate Section --- */
@@ -408,9 +509,9 @@ header {
 
 .btn-stripe-donate {
   display: inline-block;
-  background-color: #000000;
+  background-color: var(--pac-black);
   color: #ffffff;
-  padding: 14px 44px;
+  padding: 15px 44px;
   border-radius: 4px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
@@ -422,9 +523,8 @@ header {
 }
 
 .btn-stripe-donate:hover {
-  background-color: #333333;
-  color: #ffffff;
-  transform: translateY(-2px);
+  background-color: #ffffff;
+  color: var(--pac-black);
 }
 
 /* --- Footer --- */
@@ -437,8 +537,8 @@ footer {
   letter-spacing: 1px;
 }
 
-/* --- Mobile Responsive --- */
-@media (max-width: 768px) {
+/* --- Responsive Breakpoint --- */
+@media (max-width: 820px) {
   .nav-links {
     display: none;
   }
@@ -450,7 +550,7 @@ footer {
     grid-template-columns: 1fr;
   }
   .hero-overlay h2 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
   .program-image, .split-image {
     height: 240px;

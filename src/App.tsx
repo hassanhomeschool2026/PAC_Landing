@@ -8,35 +8,20 @@ export default function App() {
       {/* 1. Header / Streamlined 5-Item Navigation */}
       <header>
         <div className="nav-container">
-          <div className="brand-logo">
+          <a href="#" className="brand-logo" aria-label="Pathways Assistance Center">
             <img 
-              src="/assets/aistudio/PAC_LogoHorizon.png" 
+              src="/assets/aistudio/PAC_LogoVertical.png" 
               alt="Pathways Assistance Center" 
-              style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '72px', width: 'auto', objectFit: 'contain', display: 'block' }}
               onError={(e) => {
-                // If PAC_LogoHorizon.png is not found or still uploading, fallback to inline mark & text
                 const target = e.currentTarget;
-                target.style.display = 'none';
-                const fallback = document.getElementById('pac-brand-fallback');
-                if (fallback) fallback.style.display = 'flex';
+                if (!target.dataset.triedFallback) {
+                  target.dataset.triedFallback = 'true';
+                  target.src = '/assets/aistudio/PAC_LogoHorizon.png';
+                }
               }}
             />
-            <div id="pac-brand-fallback" style={{ display: 'none', alignItems: 'center', gap: '14px' }}>
-              <div className="brand-logo-img flex items-center justify-center">
-                <svg viewBox="0 0 40 40" fill="none" style={{ width: '44px', height: '44px' }} xmlns="http://www.w3.org/2000/svg">
-                  <rect width="40" height="40" rx="8" fill="#111111" />
-                  <path d="M6 34C10 24 18 16 34 14" stroke="#e79a9b" strokeWidth="4" strokeLinecap="round" />
-                  <path d="M12 34C15 27 21 21 34 20" stroke="#f3c2c3" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 3" />
-                  <circle cx="28" cy="11" r="5" fill="#e79a9b" />
-                  <path d="M28 8.5C27 7 25 7 24 8.5C23 10 25 12 28 14C31 12 33 10 32 8.5C31 7 29 7 28 8.5Z" fill="#FFFFFF" />
-                </svg>
-              </div>
-              <div className="brand-text">
-                <h1>PATHWAYS ASSISTANCE CENTER</h1>
-                <span>Pathways Dedicated to Helping Others</span>
-              </div>
-            </div>
-          </div>
+          </a>
 
           <ul className="nav-links">
             <li><a href="#about">About</a></li>
@@ -104,7 +89,7 @@ export default function App() {
       <section 
         className="hero"
         style={{
-          background: "url('/assets/aistudio/PAC_Hero.png') center center / cover no-repeat"
+          background: "url('/assets/aistudio/PAC_Hero.png') center top / cover no-repeat"
         }}
       >
         <div className="hero-overlay">

@@ -158,7 +158,7 @@ header {
   height: 75vh;
   min-height: 500px;
   background-color: #222222;
-  background: url('/assets/PAC_Hero.png') center center / cover no-repeat;
+  background: url('/assets/aistudio/PAC_Hero.png') center center / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -166,7 +166,12 @@ header {
 
 .hero-overlay {
   width: 100%;
-  background: linear-gradient(to top, rgba(231, 154, 155, 0.92) 0%, rgba(231, 154, 155, 0.70) 50%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.70) 35%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
   padding: 50px 20px 40px;
   text-align: center;
 }
@@ -174,17 +179,17 @@ header {
 .hero-overlay h2 {
   font-size: 2.2rem;
   letter-spacing: 3px;
-  color: #ffffff;
-  font-weight: 400;
+  color: #111111;
+  font-weight: 500;
   margin-bottom: 6px;
 }
 
 .hero-overlay p {
   font-family: 'Lato', sans-serif;
-  color: #ffffff;
+  color: #222222;
   font-size: 1.1rem;
   letter-spacing: 1.5px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* --- Bands & Container Disciplines --- */

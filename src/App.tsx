@@ -9,19 +9,32 @@ export default function App() {
       <header>
         <div className="nav-container">
           <div className="brand-logo">
-            {/* Official Logo Brandmark */}
-            <div className="brand-logo-img flex items-center justify-center">
-              <svg viewBox="0 0 40 40" fill="none" style={{ width: '44px', height: '44px' }} xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="8" fill="#111111" />
-                <path d="M6 34C10 24 18 16 34 14" stroke="#e79a9b" strokeWidth="4" strokeLinecap="round" />
-                <path d="M12 34C15 27 21 21 34 20" stroke="#f3c2c3" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 3" />
-                <circle cx="28" cy="11" r="5" fill="#e79a9b" />
-                <path d="M28 8.5C27 7 25 7 24 8.5C23 10 25 12 28 14C31 12 33 10 32 8.5C31 7 29 7 28 8.5Z" fill="#FFFFFF" />
-              </svg>
-            </div>
-            <div className="brand-text">
-              <h1>PATHWAYS ASSISTANCE CENTER</h1>
-              <span>Pathways Dedicated to Helping Others</span>
+            <img 
+              src="/assets/aistudio/PAC_LogoHorizon.png" 
+              alt="Pathways Assistance Center" 
+              style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
+              onError={(e) => {
+                // If PAC_LogoHorizon.png is not found or still uploading, fallback to inline mark & text
+                const target = e.currentTarget;
+                target.style.display = 'none';
+                const fallback = document.getElementById('pac-brand-fallback');
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            <div id="pac-brand-fallback" style={{ display: 'none', alignItems: 'center', gap: '14px' }}>
+              <div className="brand-logo-img flex items-center justify-center">
+                <svg viewBox="0 0 40 40" fill="none" style={{ width: '44px', height: '44px' }} xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="8" fill="#111111" />
+                  <path d="M6 34C10 24 18 16 34 14" stroke="#e79a9b" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M12 34C15 27 21 21 34 20" stroke="#f3c2c3" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 3" />
+                  <circle cx="28" cy="11" r="5" fill="#e79a9b" />
+                  <path d="M28 8.5C27 7 25 7 24 8.5C23 10 25 12 28 14C31 12 33 10 32 8.5C31 7 29 7 28 8.5Z" fill="#FFFFFF" />
+                </svg>
+              </div>
+              <div className="brand-text">
+                <h1>PATHWAYS ASSISTANCE CENTER</h1>
+                <span>Pathways Dedicated to Helping Others</span>
+              </div>
             </div>
           </div>
 
@@ -88,7 +101,12 @@ export default function App() {
       </header>
 
       {/* 2. Hero Section */}
-      <section className="hero">
+      <section 
+        className="hero"
+        style={{
+          background: "url('/assets/aistudio/PAC_Hero.png') center center / cover no-repeat"
+        }}
+      >
         <div className="hero-overlay">
           <h2>PATHWAYS ASSISTANCE CENTER</h2>
           <p>Pathways Dedicated to Helping Others</p>
@@ -129,13 +147,14 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="/assets/PAC_FinanAssist.png" 
+                src="/assets/aistudio/PAC_FinanAssist.png" 
                 alt="Short Term Financial Assistance" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.dataset.triedFallback) {
                     target.dataset.triedFallback = 'true';
-                    target.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80';
+                    target.src = '/assets/PAC_FinanAssist.png';
                   }
                 }}
               />
@@ -153,13 +172,14 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="/assets/PAC_FoodAssist.png" 
+                src="/assets/aistudio/PAC_FoodAssist.png" 
                 alt="Food Assistance Bridge" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.dataset.triedFallback) {
                     target.dataset.triedFallback = 'true';
-                    target.src = 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80';
+                    target.src = '/assets/PAC_FoodAssist.png';
                   }
                 }}
               />
@@ -177,13 +197,14 @@ export default function App() {
             </div>
             <div className="program-image">
               <img 
-                src="/assets/PAC_Youth.png" 
+                src="/assets/aistudio/PAC_Youth.png" 
                 alt="Youth Programs" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.dataset.triedFallback) {
                     target.dataset.triedFallback = 'true';
-                    target.src = 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80';
+                    target.src = '/assets/PAC_Youth.png';
                   }
                 }}
               />
@@ -378,16 +399,27 @@ export default function App() {
         </div>
       </section>
 
-      {/* 10. Band 8: GuideStar / Candid Seal */}
+      {/* Band: Candid / GuideStar Seal */}
       <section className="section-band-white">
         <div className="section-container guidestar-box">
           <h2 className="title-pink">GUIDESTAR SEAL</h2>
-          <p className="subtitle-dark" style={{ marginBottom: '14px' }}>
+          <p className="subtitle-dark" style={{ marginBottom: '20px' }}>
             This recognition shows commitment to complete transparency and trust!
           </p>
-          <div className="candid-badge">
-            <strong style={{ fontSize: '1rem', color: '#111111' }}>Candid. / GuideStar</strong><br />
-            Silver Transparency 2025–2026
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '16px' }}>
+            <a 
+              aria-label="Pathways Assistance Center" 
+              href="https://app.candid.org/profile/9922530/pathways-assistance-center-85-2971175/?pkId=a99ce759-1cc3-4d71-a3a0-097782ebb483" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ display: 'inline-block' }}
+            > 
+              <img 
+                alt="Pathways Assistance Center Candid Profile" 
+                src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9922530/svg" 
+                style={{ maxWidth: '160px', height: 'auto', display: 'block' }} 
+              />
+            </a>
           </div>
         </div>
       </section>

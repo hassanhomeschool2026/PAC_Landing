@@ -12,7 +12,7 @@ export default function App() {
             <img 
               src="/assets/aistudio/PAC_LogoVertical.png" 
               alt="Pathways Assistance Center" 
-              style={{ height: '72px', width: 'auto', objectFit: 'contain', display: 'block' }}
+              style={{ height: '85px', width: 'auto', maxHeight: 'none', objectFit: 'contain', display: 'block' }}
               onError={(e) => {
                 const target = e.currentTarget;
                 if (!target.dataset.triedFallback) {
@@ -89,12 +89,11 @@ export default function App() {
       <section 
         className="hero"
         style={{
-          background: "url('/assets/aistudio/PAC_Hero.png') center top / cover no-repeat"
+          background: "url('/assets/aistudio/PAC_Hero.png') center 30% / cover no-repeat"
         }}
       >
         <div className="hero-overlay">
-          <h2>PATHWAYS ASSISTANCE CENTER</h2>
-          <p>Pathways Dedicated to Helping Others</p>
+          <p className="hero-tagline">Pathways Assistance Center</p>
         </div>
       </section>
 

@@ -48,7 +48,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 14px 32px;
+  padding: 12px 32px;
 }
 
 .nav-container {
@@ -57,19 +57,22 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 85px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 /* LOGO PNG / SVG */
 .brand-logo img,
 .brand-logo-img {
-  height: 72px;
+  height: 85px;
   width: auto;
+  max-height: none;
   object-fit: contain;
   display: block;
 }
@@ -93,16 +96,26 @@ header {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   letter-spacing: 1.5px;
   color: #333333;
   text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-links a:hover {
@@ -112,10 +125,13 @@ header {
 .btn-donate-nav {
   background-color: var(--pac-black);
   color: #ffffff !important;
-  padding: 9px 22px;
+  padding: 10px 24px;
   border-radius: 4px;
   font-weight: 600 !important;
   letter-spacing: 1.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-donate-nav:hover {
@@ -157,10 +173,10 @@ header {
 /* --- Hero Section --- */
 .hero {
   position: relative;
-  height: 75vh;
-  min-height: 520px;
+  height: 92vh;
+  min-height: 650px;
   background-color: #ffffff;
-  background: url('/assets/aistudio/PAC_Hero.png') center top / cover no-repeat;
+  background: url('/assets/aistudio/PAC_Hero.png') center 30% / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -181,24 +197,19 @@ header {
     rgba(255, 255, 255, 0.85) 88%,
     rgba(255, 255, 255, 1) 100%
   );
-  padding: 0 20px 28px;
+  padding: 0 20px 36px;
   text-align: center;
 }
 
-.hero-overlay h2 {
-  font-size: 2.2rem;
-  letter-spacing: 3px;
+.hero-tagline {
+  font-family: 'Montserrat', sans-serif;
   color: #111111;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.hero-overlay p {
-  font-family: 'Lato', sans-serif;
-  color: #111111;
-  font-size: 1.1rem;
-  letter-spacing: 1.5px;
-  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
 }
 
 /* --- Bands & Container Disciplines --- */

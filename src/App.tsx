@@ -4,36 +4,46 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <>
-      {/* 1. Header / Streamlined 5-Item Navigation */}
-      <header>
-        <div className="nav-container">
-          <a href="#" className="brand-logo" aria-label="Pathways Assistance Center">
-            <img 
-              src="/assets/aistudio/PAC_LogoVertical.png" 
-              alt="Pathways Assistance Center" 
-              style={{ height: '85px', width: 'auto', maxHeight: 'none', objectFit: 'contain', display: 'block' }}
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (!target.dataset.triedFallback) {
-                  target.dataset.triedFallback = 'true';
-                  target.src = '/assets/aistudio/PAC_LogoHorizon.png';
-                }
-              }}
-            />
+    <div id="top">
+      {/* 1. Header / Navigation Bar */}
+      <header style={{ padding: '12px 32px', overflow: 'visible', height: 'auto', maxHeight: 'none' }}>
+        <div 
+          className="nav-container"
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflow: 'visible', height: 'auto', maxHeight: 'none' }}
+        >
+          <a href="#top" className="brand-logo" aria-label="Pathways Assistance Center Home">
+            <div style={{ display: 'flex', alignItems: 'center', minWidth: '200px' }}>
+              <img 
+                src="/assets/aistudio/PAC_LogoVertical.png" 
+                alt="Pathways Assistance Center" 
+                className="h-20 w-auto max-h-none max-w-none shrink-0"
+                style={{ 
+                  height: '80px', 
+                  width: 'auto', 
+                  maxHeight: 'none', 
+                  maxWidth: 'none', 
+                  objectFit: 'contain', 
+                  display: 'block' 
+                }}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = '/assets/aistudio/PAC_LogoHorizon.png';
+                  }
+                }}
+              />
+            </div>
           </a>
 
           <ul className="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#programs">Programs</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#forms">PAC Forms</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#top">HOME</a></li>
+            <li><a href="/programs-events.html">PROGRAMS/EVENTS</a></li>
+            <li><a href="/forms.html">PAC FORMS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
             <li>
               <a 
-                href="https://donate.stripe.com/fZudRb5J4dDsew934AgnK00" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+                href="#donate" 
                 className="btn-donate-nav"
               >
                 DONATE
@@ -67,15 +77,13 @@ export default function App() {
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
           <div className="mobile-dropdown">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a>
-            <a href="#programs" onClick={() => setMobileMenuOpen(false)}>Programs</a>
-            <a href="#events" onClick={() => setMobileMenuOpen(false)}>Events</a>
-            <a href="#forms" onClick={() => setMobileMenuOpen(false)}>PAC Forms</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+            <a href="#top" onClick={() => setMobileMenuOpen(false)}>HOME</a>
+            <a href="/programs-events.html" onClick={() => setMobileMenuOpen(false)}>PROGRAMS/EVENTS</a>
+            <a href="/forms.html" onClick={() => setMobileMenuOpen(false)}>PAC FORMS</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>CONTACT</a>
             <a 
-              href="https://donate.stripe.com/fZudRb5J4dDsew934AgnK00" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+              href="#donate" 
+              onClick={() => setMobileMenuOpen(false)}
               className="btn-donate-nav"
               style={{ textAlign: 'center', marginTop: '6px' }}
             >
@@ -85,7 +93,7 @@ export default function App() {
         )}
       </header>
 
-      {/* 2. Hero Section */}
+      {/* Item 1: Hero Section */}
       <section 
         className="hero"
         style={{
@@ -93,11 +101,21 @@ export default function App() {
         }}
       >
         <div className="hero-overlay">
-          <p className="hero-tagline">Pathways Assistance Center</p>
+          <h1 
+            className="hero-title"
+            style={{
+              color: '#111111',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              fontFamily: "'Montserrat', sans-serif"
+            }}
+          >
+            PATHWAYS ASSISTANCE CENTER
+          </h1>
         </div>
       </section>
 
-      {/* 3. Band 1: Who We Are (Original Narrative) */}
+      {/* Item 2: Band 1 (Pink #e79a9b): Who We Are - About Us */}
       <section id="about" className="section-band-pink">
         <div className="section-container">
           <h2 className="title-white">WHO WE ARE</h2>
@@ -114,7 +132,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. Band 2: Ways We Help (The 3 Core Pillars) */}
+      {/* Item 3: Band 2 (White): Ways We Help */}
       <section id="programs" className="section-band-white">
         <div className="section-container">
           <h2 className="title-pink">WAYS WE HELP</h2>
@@ -127,7 +145,7 @@ export default function App() {
               <p>
                 We provide short term emergency financial bridge assistance with rent/mortgage and critical utilities to prevent disruptions and stabilize homes for local families with children.
               </p>
-              <a href="#forms" className="btn-pill-pink">Apply / Inquire</a>
+              <a href="/programs-events.html" className="btn-pill-pink">View Programs & Events</a>
             </div>
             <div className="program-image">
               <img 
@@ -152,7 +170,7 @@ export default function App() {
               <p>
                 We provide grocery assistance and emergency food bridge support to ensure local children and parents have immediate access to fresh, nourishing meals during unexpected hardships.
               </p>
-              <a href="#forms" className="btn-pill-pink">Apply / Inquire</a>
+              <a href="/programs-events.html" className="btn-pill-pink">View Programs & Events</a>
             </div>
             <div className="program-image">
               <img 
@@ -177,7 +195,7 @@ export default function App() {
               <p>
                 We host several age-appropriate, fun-filled, education-packed programs and events for youth ages 8–17 throughout the year. Children are VIP at Pathways Assistance Center and the main reasons why we are here!
               </p>
-              <a href="#forms" className="btn-pill-pink">Get Involved</a>
+              <a href="/programs-events.html" className="btn-pill-pink">View Programs & Events</a>
             </div>
             <div className="program-image">
               <img 
@@ -197,126 +215,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. Band 3: PAC Forms Hub (Dedicated Forms Destination) */}
-      <section id="forms" className="section-band-pink">
-        <div className="section-container">
-          <h2 className="title-white">PATHWAYS ASSISTANCE CENTER FORMS</h2>
-          <p className="subtitle-white">Select a form below to complete your registration or inquiry online.</p>
-
-          <div className="forms-grid">
-            {/* Form Button 1: Volunteer Application */}
-            <div className="form-hub-card">
-              <div>
-                <h3>VOLUNTEER APPLICATION</h3>
-                <p>Join our volunteer team to support youth mentoring, community outreach, and distribution events.</p>
-              </div>
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-hub-action"
-              >
-                Volunteer Application
-              </a>
-            </div>
-
-            {/* Form Button 2: Community & Assistance Inquiry */}
-            <div className="form-hub-card">
-              <div>
-                <h3>ASSISTANCE & INQUIRY</h3>
-                <p>Submit a direct inquiry for youth programs, emergency grocery bridge aid, or family utility questions.</p>
-              </div>
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-hub-action"
-              >
-                Inquiry Form
-              </a>
-            </div>
-
-            {/* Form Button 3: Youth Registration / Event RSVP */}
-            <div className="form-hub-card">
-              <div>
-                <h3>YOUTH PROGRAM REGISTRATION</h3>
-                <p>Register your children (ages 8–17) for upcoming educational workshops, camps, and seasonal initiatives.</p>
-              </div>
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe0y1YYNy5k9GZhItJ4TCBB31tsVJ8o5nC2nRlLNCOfgGB9Sw/viewform" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-hub-action"
-              >
-                Youth Registration
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Band 4: Upcoming Events & Initiatives */}
-      <section id="events" className="section-band-white">
-        <div className="section-container">
-          <h2 className="title-pink">UPCOMING EVENTS & INITIATIVES</h2>
-          <p className="subtitle-dark">Paving paths through community education, youth empowerment, and family support</p>
-
-          <div className="events-grid">
-            {/* Event 1: Camp Pathways */}
-            <div className="event-card">
-              <img 
-                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" 
-                alt="Camp Pathways" 
-                className="event-card-img" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="event-card-body">
-                <div>
-                  <h3>CAMP PATHWAYS: LEADERS WITHIN</h3>
-                  <p>Annual summer enrichment and leadership workshop series designed to inspire and equip youth ages 8–17.</p>
-                </div>
-                <a href="#forms" className="btn-pill-pink">Registration & Info</a>
-              </div>
-            </div>
-
-            {/* Event 2: Community Bridge Drive */}
-            <div className="event-card">
-              <img 
-                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" 
-                alt="Food Bridge Distribution" 
-                className="event-card-img" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="event-card-body">
-                <div>
-                  <h3>COMMUNITY FOOD BRIDGE DISTRIBUTION</h3>
-                  <p>Pop-up food support drives providing fresh groceries and nutrition to families experiencing sudden transitions.</p>
-                </div>
-                <a href="#forms" className="btn-pill-pink">Volunteer / Inquire</a>
-              </div>
-            </div>
-
-            {/* Event 3: Holiday Family Support */}
-            <div className="event-card">
-              <img 
-                src="https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=600&q=80" 
-                alt="Holiday Event" 
-                className="event-card-img" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="event-card-body">
-                <div>
-                  <h3>JOYFUL HOLIDAYS FAMILY EVENT</h3>
-                  <p>Bringing dignity and joy to local households through seasonal family blessings and children's support.</p>
-                </div>
-                <a href="#forms" className="btn-pill-pink">Learn More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Band 5: Service Areas */}
+      {/* Item 4: Band 3 (Pink #e79a9b): Service Areas */}
       <section id="service-areas" className="section-band-pink">
         <div className="section-container">
           <h2 className="title-white">SERVICE AREAS</h2>
@@ -332,58 +231,41 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8. Band 6: Split Grid - Clock & Community Safety-Net Resources */}
-      <section id="resources" className="section-band-gray">
+      {/* Item 5: Band 4 (Light Neutral Split Row): Hours of Operation */}
+      <section id="hours" className="section-band-gray">
         <div className="section-container">
           <div className="split-grid">
             <div className="split-image">
               <img 
-                src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=800&q=80" 
-                alt="Hours & Assistance Schedules" 
-                referrerPolicy="no-referrer"
+                src="/assets/PAC_Clock.png" 
+                alt="Hours of Operation Clock" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = '/assets/aistudio/PAC_Clock.png';
+                  }
+                }}
               />
             </div>
             <div className="split-content">
-              <h3>COMMUNITY RESOURCES</h3>
-              <p style={{ fontSize: '0.95rem', color: '#555', marginBottom: '16px' }}>
-                Direct financial grants are disbursed based on active funding cycles. If your family is facing immediate utility disconnection or housing hardship, connect directly with our Collin County partners:
-              </p>
-              <ul className="resource-list">
-                <li>
-                  <strong>Assistance Center of Collin County:</strong><br />
-                  Emergency Rent & Utility Relief • Call <a href="tel:9724221850">(972) 422-1850</a> or visit <a href="https://assistancecenter.org" target="_blank" rel="noopener noreferrer">assistancecenter.org</a>
-                </li>
-                <li>
-                  <strong>All Community Outreach (ACO):</strong><br />
-                  Local Emergency Aid & Pantries • Call <a href="tel:9727279131">(972) 727-9131</a> or visit <a href="https://acocares.org" target="_blank" rel="noopener noreferrer">acocares.org</a>
-                </li>
-                <li>
-                  <strong>Texas 2-1-1:</strong><br />
-                  Statewide 24/7 Crisis Resource Directory • Dial <a href="tel:211">2-1-1</a> or visit <a href="https://www.211texas.org" target="_blank" rel="noopener noreferrer">211texas.org</a>
-                </li>
+              <h3 className="hours-title">HOURS OF OPERATION</h3>
+              <ul className="hours-schedule-list">
+                <li><span className="day-name">Sunday:</span> <span className="day-hours closed">Closed</span></li>
+                <li><span className="day-name">Monday:</span> <span className="day-hours closed">Closed</span></li>
+                <li><span className="day-name">Tuesday:</span> <span className="day-hours open">9:00 AM – 1:00 PM</span></li>
+                <li><span className="day-name">Wednesday:</span> <span className="day-hours open">9:00 AM – 1:00 PM</span></li>
+                <li><span className="day-name">Thursday:</span> <span className="day-hours closed">Closed</span></li>
+                <li><span className="day-name">Friday:</span> <span className="day-hours closed">Closed</span></li>
+                <li><span className="day-name">Saturday:</span> <span className="day-hours closed">Closed</span></li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. Band 7: Contact Information */}
-      <section id="contact" className="section-band-pink">
-        <div className="section-container contact-details">
-          <h2 className="title-white">CONTACT PATHWAYS ASSISTANCE CENTER</h2>
-          <p style={{ marginTop: '20px' }}>
-            5900 Balcones Drive, Suite 165<br />
-            Austin, Texas 78731
-          </p>
-          <p style={{ marginTop: '12px' }}>
-            <a href="mailto:info@pathwaysac.org">info@pathwaysac.org</a><br />
-            B: (972) 581-9322<br />
-            F: (972) 551-4442
-          </p>
-        </div>
-      </section>
-
-      {/* Band: Candid / GuideStar Seal */}
+      {/* Item 6: Band 5 (White): GuideStar Seal */}
       <section className="section-band-white">
         <div className="section-container guidestar-box">
           <h2 className="title-pink">GUIDESTAR SEAL</h2>
@@ -408,7 +290,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 11. Band 9: Donate Section */}
+      {/* Item 7: Band 6 (Pink #e79a9b): Donate Section */}
       <section id="donate" className="section-band-pink">
         <div className="section-container donate-box">
           <h2 className="title-white">DONATE</h2>
@@ -430,10 +312,25 @@ export default function App() {
         </div>
       </section>
 
-      {/* 12. Footer */}
-      <footer>
-        <p>© 2026 by Pathways Assistance Center. All Rights Reserved. 501(c)(3) Tax-Exempt Public Charity.</p>
+      {/* Footer: Contact Details */}
+      <footer id="contact" className="site-footer">
+        <div className="footer-container">
+          <div className="footer-contact-block">
+            <h3>PATHWAYS ASSISTANCE CENTER</h3>
+            <p className="footer-address">
+              5900 Balcones Drive, Suite 165<br />
+              Austin, TX 78731
+            </p>
+            <p className="footer-meta">
+              <a href="mailto:info@pathwaysac.org">info@pathwaysac.org</a> • <a href="tel:9725819322">972.581.9322</a>
+            </p>
+          </div>
+          <div className="footer-divider" />
+          <p className="footer-copyright">
+            © 2026 by Pathways Assistance Center. All Rights Reserved. 501(c)(3) Tax-Exempt Public Charity.
+          </p>
+        </div>
       </footer>
-    </>
+    </div>
   );
 }

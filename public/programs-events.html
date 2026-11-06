@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs & Events — Pathways Assistance Center</title>
+  <meta name="description" content="Explore programs and community initiatives offered by Pathways Assistance Center across Collin and Dallas counties." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pac-pink: #e79a9b;
+      --pac-black: #111111;
+      --pac-charcoal: #222222;
+      --pac-gray: #555555;
+      --pac-light-bg: #f7f7f7;
+      --pac-white: #ffffff;
+      --max-width: 1100px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', sans-serif; color: var(--pac-charcoal); background-color: var(--pac-white); line-height: 1.7; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    header { background: var(--pac-white); border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; padding: 12px 32px; }
+    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo img { height: 80px; width: auto; object-fit: contain; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; color: #333; text-transform: uppercase; font-weight: 500; }
+    .nav-links a:hover { color: var(--pac-pink); }
+    .btn-donate-nav { background-color: var(--pac-black); color: #fff !important; padding: 10px 24px; border-radius: 4px; font-weight: 600; }
+    .btn-donate-nav:hover { background-color: var(--pac-pink); }
+    .subpage-hero { background: var(--pac-pink); color: #fff; padding: 60px 24px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.2rem; margin-bottom: 10px; color: #fff; }
+    .subpage-hero p { font-size: 1.1rem; font-weight: 300; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 60px 24px; }
+    .section-title { font-size: 1.8rem; color: var(--pac-pink); text-align: center; margin-bottom: 10px; }
+    .section-subtitle { text-align: center; color: var(--pac-gray); margin-bottom: 48px; }
+    .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 60px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-body h3 { font-size: 1.1rem; color: #111; margin-bottom: 12px; }
+    .card-body p { font-size: 0.95rem; color: #555; margin-bottom: 20px; }
+    .btn-action { display: inline-block; text-align: center; background: var(--pac-black); color: #fff; padding: 10px 20px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; }
+    .btn-action:hover { background: var(--pac-pink); color: #fff; }
+    .site-footer { background: #161616; color: #e0e0e0; text-align: center; padding: 50px 24px 30px; }
+    .footer-container { max-width: 800px; margin: 0 auto; }
+    .footer-contact-block h3 { color: #fff; font-size: 1.15rem; margin-bottom: 12px; }
+    .footer-address { font-size: 0.95rem; color: #ccc; margin-bottom: 10px; }
+    .footer-meta { font-size: 0.95rem; color: var(--pac-pink); margin-bottom: 20px; }
+    .footer-meta a { color: var(--pac-pink); }
+    .footer-divider { height: 1px; background: #2a2a2a; margin: 20px auto; max-width: 400px; }
+    .footer-copyright { font-size: 0.8rem; color: #888; }
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      header { padding: 12px 18px; }
+      .brand-logo img { height: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/#top" class="brand-logo" aria-label="Pathways Assistance Center Home">
+        <img src="/assets/aistudio/PAC_LogoVertical.png" alt="Pathways Assistance Center" onerror="this.src='/assets/PAC_LogoVertical.png'" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#top">HOME</a></li>
+        <li><a href="/programs-events.html" style="color: var(--pac-pink);">PROGRAMS/EVENTS</a></li>
+        <li><a href="/forms.html">PAC FORMS</a></li>
+        <li><a href="/#contact">CONTACT</a></li>
+        <li><a href="https://donate.stripe.com/fZudRb5J4dDsew934AgnK00" target="_blank" rel="noopener noreferrer" class="btn-donate-nav">DONATE</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="subpage-hero">
+    <h1>PROGRAMS & COMMUNITY EVENTS</h1>
+    <p>Committed to uplifting children, stabilizing families, and building lasting opportunity.</p>
+  </section>
+
+  <main class="container">
+    <h2 class="section-title">OUR CORE INITIATIVES</h2>
+    <p class="section-subtitle">Dedicated bridge assistance and youth enrichment across Collin and Dallas counties</p>
+
+    <div class="programs-grid">
+      <div class="card">
+        <img src="/assets/aistudio/PAC_FinanAssist.png" alt="Short Term Financial Assistance" onerror="this.src='/assets/PAC_FinanAssist.png'" />
+        <div class="card-body">
+          <div>
+            <h3>Short Term Financial Assistance</h3>
+            <p>Emergency financial bridge aid for rent, mortgage, and critical utility payments to stabilize households facing sudden hardships.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Apply / Inquire</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/assets/aistudio/PAC_FoodAssist.png" alt="Food Assistance Bridge" onerror="this.src='/assets/PAC_FoodAssist.png'" />
+        <div class="card-body">
+          <div>
+            <h3>Food Assistance Bridge</h3>
+            <p>Immediate grocery aid and nourishment resources to ensure children and families maintain access to fresh, healthy meals.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Apply / Inquire</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/assets/aistudio/PAC_Youth.png" alt="Youth Programs" onerror="this.src='/assets/PAC_Youth.png'" />
+        <div class="card-body">
+          <div>
+            <h3>Youth Programs</h3>
+            <p>Educational enrichment, tutoring, and fun-filled leadership workshops for youth ages 8–17 to break cycles of generational poverty.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Youth Registration</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" alt="Camp Pathways" />
+        <div class="card-body">
+          <div>
+            <h3>Camp Pathways: Leaders Within</h3>
+            <p>Annual summer enrichment and leadership workshop series inspiring and equipping youth with skills, mentorship, and confidence.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Event Info & RSVP</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Community Food Bridge Distribution" />
+        <div class="card-body">
+          <div>
+            <h3>Community Food Bridge Distribution</h3>
+            <p>Pop-up food support drives providing fresh groceries and nutrition to local families experiencing sudden life transitions.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Volunteer / Inquire</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=600&q=80" alt="Joyful Holidays Family Event" />
+        <div class="card-body">
+          <div>
+            <h3>Joyful Holidays Family Event</h3>
+            <p>Bringing dignity and joy to local households through seasonal family blessings, gifts, and essential supplies.</p>
+          </div>
+          <a href="/forms.html" class="btn-action">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Candid Seal -->
+  <section style="background: #f7f7f7; padding: 40px 20px; text-align: center;">
+    <h3 style="font-size: 1.2rem; color: var(--pac-pink); margin-bottom: 8px;">GUIDESTAR SEAL OF TRANSPARENCY</h3>
+    <p style="font-size: 0.95rem; color: #555; margin-bottom: 16px;">Committed to complete transparency and trust!</p>
+    <div style="display: flex; justify-content: center;">
+      <a href="https://app.candid.org/profile/9922530/pathways-assistance-center-85-2971175/?pkId=a99ce759-1cc3-4d71-a3a0-097782ebb483" target="_blank" rel="noopener noreferrer">
+        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9922530/svg" alt="Pathways Assistance Center Candid Profile" style="max-width: 140px; height: auto;" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="site-footer">
+    <div class="footer-container">
+      <div class="footer-contact-block">
+        <h3>PATHWAYS ASSISTANCE CENTER</h3>
+        <p class="footer-address">
+          5900 Balcones Drive, Suite 165<br />
+          Austin, TX 78731
+        </p>
+        <p class="footer-meta">
+          <a href="mailto:info@pathwaysac.org">info@pathwaysac.org</a> • <a href="tel:9725819322">972.581.9322</a>
+        </p>
+      </div>
+      <div class="footer-divider"></div>
+      <p class="footer-copyright">
+        © 2026 by Pathways Assistance Center. All Rights Reserved. 501(c)(3) Tax-Exempt Public Charity.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

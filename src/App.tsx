@@ -107,7 +107,7 @@ export default function App() {
               color: '#111111',
               fontWeight: 600,
               textTransform: 'uppercase',
-              fontFamily: "'Montserrat', sans-serif"
+              fontFamily: "'Brandon Grotesque', 'Montserrat', sans-serif"
             }}
           >
             PATHWAYS ASSISTANCE CENTER
@@ -215,19 +215,25 @@ export default function App() {
         </div>
       </section>
 
-      {/* Item 4: Band 3 (Pink #e79a9b): Service Areas */}
+      {/* Item 4: Band 3 (Pink #e79a9b): Service Areas (Original 2-Column Display) */}
       <section id="service-areas" className="section-band-pink">
         <div className="section-container">
-          <h2 className="title-white">SERVICE AREAS</h2>
-          <p className="subtitle-white">Proudly serving local families across Collin and Dallas counties</p>
-          <ul className="service-cities-list">
-            <li>• Wylie</li>
-            <li>• Murphy</li>
-            <li>• Lavon</li>
-            <li>• Rockwall</li>
-            <li>• Rowlett (75089)</li>
-            <li>• Sachse</li>
-          </ul>
+          <div className="service-areas-grid">
+            <div className="service-areas-left">
+              <h2 className="service-areas-heading">SERVICE AREAS</h2>
+            </div>
+            <div className="service-areas-right">
+              <p className="service-areas-intro">We serve families in</p>
+              <ul className="service-areas-bullets">
+                <li>Wylie</li>
+                <li>Murphy</li>
+                <li>Lavon</li>
+                <li>Rockwall</li>
+                <li>Rowlett (75089)</li>
+                <li>Sachse</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -238,8 +244,8 @@ export default function App() {
             <div className="split-image">
               <img 
                 src="/assets/PAC_Clock.png" 
-                alt="Hours of Operation Clock" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                alt="Hours of Operation" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.dataset.triedFallback) {
@@ -265,7 +271,45 @@ export default function App() {
         </div>
       </section>
 
-      {/* Item 6: Band 5 (White): GuideStar Seal */}
+      {/* Item 6: Band 5 (Pink #e79a9b): Contact Section Matching Original Layout */}
+      <section id="contact" className="section-band-pink contact-band">
+        <div className="section-container contact-box">
+          <h2 className="contact-title">CONTACT</h2>
+          <h3 className="contact-org-title">PATHWAYS ASSISTANCE CENTER</h3>
+
+          <div className="contact-address-block">
+            <p className="contact-local">Proudly Based &amp; Operating in Lavon, Texas</p>
+            <p className="contact-mailing">Official Mailing: 5900 Balcones Drive, Suite 100, Austin, TX 78731</p>
+          </div>
+
+          <div className="contact-comm-block">
+            <p>
+              <a href="mailto:info@pathwaysac.org" className="contact-email">info@pathwaysac.org</a>
+            </p>
+            <div className="contact-phones">
+              <span>B: <a href="tel:9725819322">(972) 581-9322</a></span>
+              <span className="phone-sep">•</span>
+              <span>F: (972) 551-4442</span>
+            </div>
+          </div>
+
+          <div className="contact-social-block">
+            <a 
+              href="https://www.facebook.com/pathwayscenter" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Pathways Assistance Center Facebook"
+              className="facebook-icon-link"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Item 7: Band 6 (White): GuideStar Seal */}
       <section className="section-band-white">
         <div className="section-container guidestar-box">
           <h2 className="title-pink">GUIDESTAR SEAL</h2>
@@ -290,7 +334,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Item 7: Band 6 (Pink #e79a9b): Donate Section */}
+      {/* Item 8: Band 7 (Pink #e79a9b): Donate Section */}
       <section id="donate" className="section-band-pink">
         <div className="section-container donate-box">
           <h2 className="title-white">DONATE</h2>
@@ -312,20 +356,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer: Contact Details */}
-      <footer id="contact" className="site-footer">
+      {/* Footer */}
+      <footer className="site-footer">
         <div className="footer-container">
-          <div className="footer-contact-block">
-            <h3>PATHWAYS ASSISTANCE CENTER</h3>
-            <p className="footer-address">
-              5900 Balcones Drive, Suite 165<br />
-              Austin, TX 78731
-            </p>
-            <p className="footer-meta">
-              <a href="mailto:info@pathwaysac.org">info@pathwaysac.org</a> • <a href="tel:9725819322">972.581.9322</a>
-            </p>
-          </div>
-          <div className="footer-divider" />
           <p className="footer-copyright">
             © 2026 by Pathways Assistance Center. All Rights Reserved. 501(c)(3) Tax-Exempt Public Charity.
           </p>
